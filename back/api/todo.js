@@ -3,6 +3,7 @@ var User=require('./../models/userSchema');
 var express = require('express');
 var router = express.Router();
 
+
 /* post */
 router.post('/:userEmail', function(req, res, next) {
 
