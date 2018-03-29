@@ -48,6 +48,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+var cors = require('cors');
+
+// use it before all route definitions
+app.use(cors({origin: '*'}));
 /*app.listen(3000, function () {
   console.log('Currently listening on port 3000!')
 })*/

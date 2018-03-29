@@ -23,11 +23,9 @@ router.get('/', function (req, res, next) {
         }
         if (!objects) {
             res.status(404).send();
-            console.log('objects')
         }
         else {
             res.json(objects);
-            console.log('json')
         }
 
     });
@@ -67,6 +65,7 @@ router.delete('/:id', function (req, res) {
 router.put('/:id', function (req, res) {
     Object.update({ _id: req.params.id },
         {
+            name:req.body.name,
             description: req.body.description,
             thread: req.body.thread,
             dateAjout: req.body.dateAjout,
