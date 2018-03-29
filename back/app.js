@@ -10,6 +10,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var todos = require('./api/todo');
 var user = require('./api/user');
+var object = require('./api/object');
 var app = express();
 
 // view engine setup
@@ -28,6 +29,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/todos', todos);
 app.use('/user', user);
+app.use('/object', object);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -46,5 +48,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+/*app.listen(3000, function () {
+  console.log('Currently listening on port 3000!')
+})*/
 module.exports = app;

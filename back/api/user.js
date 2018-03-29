@@ -1,7 +1,7 @@
 var User=require('./../models/userSchema');
 var express = require('express');
 var router = express.Router();
-var bcrypt = require('bcrypt');
+
 /* post */
 router.post('/register',function (req,res) {
     var user=new User(req.body);
