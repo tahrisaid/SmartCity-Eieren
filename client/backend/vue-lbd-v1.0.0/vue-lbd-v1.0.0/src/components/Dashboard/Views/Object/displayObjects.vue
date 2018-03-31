@@ -16,6 +16,8 @@
                     <th scope="col">Description</th>
                     <th scope="col">Thread or not</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                   </tr>
                 </thead>
                 <tbody v-for="object of objects" :key="object.description">
@@ -32,6 +34,12 @@
                     <td>
                     {{object.dateAjout}}
                     </td>
+                    <td>
+                      <router-link :to="{ name: 'show-object', params: { id: object._id} }">Show object</router-link>
+                    </td>
+                    <td>
+                       <router-link :to="{ name: 'edit-object', params: { id: object._id} }">Edit object</router-link>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -40,6 +48,7 @@
         </div>
          </div>
     </div>
+    <router-link to="/admin/add-object">Add object</router-link>
   </div>
 </template>
 <script>

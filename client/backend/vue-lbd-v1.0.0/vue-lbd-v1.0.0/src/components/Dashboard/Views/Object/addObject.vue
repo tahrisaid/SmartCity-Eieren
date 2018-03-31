@@ -16,7 +16,7 @@
 </template>
 <script>
   import addObjectForm from './addObjectForm.vue'
-  import UserCard from './UserProfile/UserCard.vue'
+  import UserCard from '../UserProfile/UserCard.vue'
   export default {
     components: {
       addObjectForm,

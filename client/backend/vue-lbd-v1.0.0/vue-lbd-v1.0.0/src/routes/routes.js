@@ -10,8 +10,10 @@ import Typography from 'src/components/Dashboard/Views/Typography.vue'
 import Icons from 'src/components/Dashboard/Views/Icons.vue'
 import Maps from 'src/components/Dashboard/Views/Maps.vue'
 import Notifications from 'src/components/Dashboard/Views/Notifications.vue'
-import DisplayObjects from 'src/components/Dashboard/Views/displayObjects.vue'
-import addObject from 'src/components/Dashboard/Views/addObject.vue'
+import DisplayObjects from 'src/components/Dashboard/Views/Object/displayObjects.vue'
+import addObject from 'src/components/Dashboard/Views/Object/addObject.vue'
+import showObject from 'src/components/Dashboard/Views/Object/showObject.vue'
+import editObject from 'src/components/Dashboard/Views/Object/editObject.vue'
 
 const routes = [
   {
@@ -66,8 +68,18 @@ const routes = [
       },
       {
         path: 'add-object',
-        name: 'Add object',
+        name: 'add-object',
         component: addObject
+      },
+      {
+        path: 'show-object/:id',
+        name: 'show-object',
+        component: showObject
+      },
+      {
+        path: 'edit-object/:id',
+        name: 'edit-object',
+        component: editObject
       }
     ]
   },
