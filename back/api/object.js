@@ -13,6 +13,16 @@ router.post('/', function (req, res) {
             res.send(object);
     });
 });
+
+router.post('/', function(req, res, next) {
+    object.save(req.body, function (err, object) {
+        if (err)
+                res.send(err);
+        else
+        res.json(object);
+    });
+  });
+
 /*get all*/
 router.get('/', function (req, res, next) {
 
