@@ -21,7 +21,7 @@
         </template>
         <hr class="my-4">
         <b-btn variant="success" @click.stop="editObject(object._id)">Edit</b-btn>
-        <b-btn variant="danger" @click.stop="deleteObject(object._id)">Delete</b-btn>
+        <b-btn variant="danger" @click.stop="deleteObject(object._id),notifyVue('bottom', 'right')">Delete</b-btn>
       </b-jumbotron>
     </b-col>
   </b-row>
@@ -44,7 +44,11 @@ export default {
   },
   data () {
     return {
-      object: []
+      object: [],
+      type: ['', 'info', 'success', 'warning', 'danger'],
+      notifications: {
+        topCenter: false
+      }
     }
   },
   created () {
@@ -73,6 +77,20 @@ export default {
       .catch(e => {
         this.errors.push(e)
       })
+    },
+    notifyVue (verticalAlign, horizontalAlign) {
+      const notification = {
+        template: `<span><b>Removal Notification</b></br>This object have been removed succesfully.</span>`
+      }
+      const color = Math.floor((Math.random() * 4) + 1)
+      this.$notifications.notify(
+        {
+          component: notification,
+          icon: 'nc-icon nc-app',
+          horizontalAlign: horizontalAlign,
+          verticalAlign: verticalAlign,
+          type: this.type[color]
+        })
     }
   }
 }

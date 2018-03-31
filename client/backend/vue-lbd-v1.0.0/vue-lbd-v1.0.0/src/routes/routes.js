@@ -10,10 +10,10 @@ import Typography from 'src/components/Dashboard/Views/Typography.vue'
 import Icons from 'src/components/Dashboard/Views/Icons.vue'
 import Maps from 'src/components/Dashboard/Views/Maps.vue'
 import Notifications from 'src/components/Dashboard/Views/Notifications.vue'
-import DisplayObjects from 'src/components/Dashboard/Views/Object/displayObjects.vue'
-import addObject from 'src/components/Dashboard/Views/Object/addObject.vue'
-import showObject from 'src/components/Dashboard/Views/Object/showObject.vue'
-import editObject from 'src/components/Dashboard/Views/Object/editObject.vue'
+import DisplayObjects from 'src/components/Object/displayObjects.vue'
+import addObject from 'src/components/Object/addObject.vue'
+import showObject from 'src/components/Object/showObject.vue'
+import editObject from 'src/components/Object/editObject.vue'
 
 const routes = [
   {

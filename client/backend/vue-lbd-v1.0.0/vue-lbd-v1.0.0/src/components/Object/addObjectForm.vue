@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="text-center">
-        <button class="btn btn-info btn-fill float-right" type="submit" variant="primary">
+        <button class="btn btn-info btn-fill float-right" type="submit" variant="primary" @click.stop="notifyVue('bottom', 'right')">
           Add object
         </button>
       </div>
@@ -59,7 +59,11 @@
     },
     data () {
       return {
-        object: {}
+        object: {},
+        type: ['', 'info', 'success', 'warning', 'danger'],
+        notifications: {
+          topCenter: false
+        }
       }
     },
     methods: {
@@ -75,6 +79,20 @@
         .catch(e => {
           this.errors.push(e)
         })
+      },
+      notifyVue (verticalAlign, horizontalAlign) {
+        const notification = {
+          template: `<span><b>Add Notification</b></br>This object have been added succesfully.</span>`
+        }
+        const color = Math.floor((Math.random() * 4) + 1)
+        this.$notifications.notify(
+          {
+            component: notification,
+            icon: 'nc-icon nc-app',
+            horizontalAlign: horizontalAlign,
+            verticalAlign: verticalAlign,
+            type: this.type[color]
+          })
       }
     }
   }

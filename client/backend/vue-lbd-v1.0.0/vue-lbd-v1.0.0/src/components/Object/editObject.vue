@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-        <b-button type="submit" variant="primary">Update</b-button>
+        <b-button type="submit" variant="primary" @click.stop="notifyVue('bottom', 'right')">Update</b-button>
       </b-form>
 </card>
 </div>
@@ -61,7 +61,11 @@ export default {
   },
   data () {
     return {
-      object: {}
+      object: {},
+      type: ['', 'info', 'success', 'warning', 'danger'],
+      notifications: {
+        topCenter: false
+      }
     }
   },
   created () {
@@ -86,6 +90,20 @@ export default {
       .catch(e => {
         this.errors.push(e)
       })
+    },
+    notifyVue (verticalAlign, horizontalAlign) {
+      const notification = {
+        template: `<span><b>Edit Notification</b></br>This object have been edited succesfully.</span>`
+      }
+      const color = Math.floor((Math.random() * 4) + 1)
+      this.$notifications.notify(
+        {
+          component: notification,
+          icon: 'nc-icon nc-app',
+          horizontalAlign: horizontalAlign,
+          verticalAlign: verticalAlign,
+          type: this.type[color]
+        })
     }
   }
 }
