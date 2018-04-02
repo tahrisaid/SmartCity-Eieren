@@ -14,6 +14,7 @@ import DisplayObjects from 'src/components/Object/displayObjects.vue'
 import addObject from 'src/components/Object/addObject.vue'
 import showObject from 'src/components/Object/showObject.vue'
 import editObject from 'src/components/Object/editObject.vue'
+import testImg from 'src/components/Object/testImg.vue'
 
 const routes = [
   {
@@ -80,6 +81,11 @@ const routes = [
         path: 'edit-object/:id',
         name: 'edit-object',
         component: editObject
+      },
+      {
+        path: 'testImg',
+        name: 'testImg',
+        component: testImg
       }
     ]
   },

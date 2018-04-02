@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var multer = require ('multer');
 var db=require('./models/database')
 var index = require('./routes/index');
 var users = require('./routes/users');;
@@ -51,4 +51,21 @@ app.use(cors({origin: '*'}));
 /*app.listen(3000, function () {
   console.log('Currently listening on port 3000!')
 })*/
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname))
+  }
+});
+
+var upload = multer({ storage: storage });
+
+
+app.post('/uploads', upload.single('image'), (req, res) => {
+    return res.json('success');
+});
+
 module.exports = app;
