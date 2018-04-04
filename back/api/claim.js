@@ -5,7 +5,7 @@ var router = express.Router();
 
 
 
-/* post */
+/* post claim */
 router.post('/', function (req, res) {
     var claim = new Claim (req.body);
     claim.save(function (err, claim) {
