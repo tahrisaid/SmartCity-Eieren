@@ -7,7 +7,7 @@
   <b-row>
     <b-col cols="12">
       <h4>
-        Edit object
+        Edit object |
        <router-link to="/admin/display-objects">List of objects</router-link>
       </h4>
       <b-jumbotron>
@@ -15,9 +15,10 @@
           {{object.name}}
         </template>
         <template slot="lead">
-          name: {{object.name}}<br>
-          description: {{object.description}}<br>
-          thread: {{object.thread}}<br>
+          Name: {{object.name}}<br>
+          Description: {{object.description}}<br>
+          Degree: {{object.degree}}<br>
+          Detected or not: {{object.thread}}<br>
         </template>
         <hr class="my-4">
         <b-btn variant="success" @click.stop="editObject(object._id)">Edit</b-btn>

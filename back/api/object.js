@@ -74,6 +74,7 @@ router.put('/:id', function (req, res) {
             description: req.body.description,
             thread: req.body.thread,
             dateAjout: req.body.dateAjout,
+            degree: req.body.degree
         }, function (err, object) {
             if (err) res.json(err);
             else

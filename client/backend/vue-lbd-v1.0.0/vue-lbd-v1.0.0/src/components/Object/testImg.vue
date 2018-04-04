@@ -38,7 +38,7 @@ export default {
       reader.onload = (e) => {
         this.imageSrc = e.target.result;
       };
-      axios.post('http://localhost:3000/object', data, {headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
+      axios.post('/uploads', data, {headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
         reader.readAsDataURL(files[0]);
       }).catch(function (error) {
         console.log(error) // catch your error
