@@ -15,6 +15,8 @@ import addObject from 'src/components/Object/addObject.vue'
 import showObject from 'src/components/Object/showObject.vue'
 import editObject from 'src/components/Object/editObject.vue'
 import testImg from 'src/components/Object/testImg.vue'
+import signUp from 'src/components/Account/signUp'
+
 
 const routes = [
   {
@@ -86,6 +88,11 @@ const routes = [
         path: 'testImg',
         name: 'testImg',
         component: testImg
+      },
+      {
+        path: 'signUp',
+        name: 'signUp',
+        component: signUp
       }
     ]
   },

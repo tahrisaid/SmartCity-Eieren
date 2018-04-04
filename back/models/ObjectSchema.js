@@ -10,4 +10,6 @@ var objectSchema=mongoose.Schema({
     img:{ data: Buffer, contentType: String }
     
 });
+
+
 module.exports =mongoose.model('Object',objectSchema);
