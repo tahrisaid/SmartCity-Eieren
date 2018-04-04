@@ -14,14 +14,27 @@
           </fg-input>
         </div>
         <div class="col-md-6">
-         <fg-input type="text"
-                    id="thread"
-                    :state="state" 
-                    label="Thread"
-                    placeholder="Thread"
-                    v-model.trim="object.thread"
-                    required>
-          </fg-input>
+         <div class="form-group">
+            <label>Previously detected?</label>
+          <select class="form-control border-input" v-model="object.thread">
+          <option value="valeur1" selected disabled>Select if detected or not</option> 
+          <option value="Detected" >Detected</option> 
+          <option value="Not detected">Not detected</option>
+        </select>
+          </div>
+        </div>
+      </div>
+        <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Degree</label>
+          <select class="form-control border-input" v-model="object.degree">
+          <option value="valeur1" selected disabled>Select the degree of danger</option> 
+          <option value="Dangerous">Dangerous</option> 
+          <option value="Very Dangerous">Very Dangerous</option>
+          <option value="Might be a danger">Might be a danger</option>
+        </select>
+          </div>
         </div>
       </div>
       <div class="row">

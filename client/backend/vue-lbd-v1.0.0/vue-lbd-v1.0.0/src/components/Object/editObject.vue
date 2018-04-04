@@ -9,45 +9,57 @@
       </h4>
       <b-form @submit="onSubmit">
         <div class="row">
-          <div class="col-md-6">
-          <fg-input type="text"
-                    id="name"
-                    :state="state" 
-                    label="Name"
-                    v-model.trim="object.name"
-                    required>
-          </fg-input>
-        </div>
-        <div class="col-md-6">
-         <fg-input type="text"
-                    id="thread"
-                    :state="state" 
-                    label="Thread"
-                    v-model.trim="object.thread"
-                    required>
-          </fg-input>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label>Description</label>
-            <textarea rows="5" class="form-control border-input"
-                      id="description"
-                      v-model="object.description"
-                      no-resize=true
+          <div class="col-md-12">
+            <fg-input type="text"
+                      id="name"
+                      :state="state" 
+                      label="Name"
+                      v-model.trim="object.name"
                       required>
-              </textarea>
+            </fg-input>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label>Thread</label>
+            <select label="thread" class="form-control border-input" id="thread" v-model.trim="object.thread" :state="state" required>
+              <option value="valeur1" selected disabled>Select if detected or not</option> 
+              <option value="Detected" >Detected</option> 
+              <option value="Not detected">Not detected</option>
+           </select>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-12">
+              <label>Degree</label>
+              <select class="form-control border-input" id="degree" v-model.trim="object.degree" :state="state" required>
+                <option value="valeur1" selected disabled>Select the degree of danger</option> 
+                <option value="Dangerous">Dangerous</option> 
+                <option value="Very Dangerous">Very Dangerous</option>
+                <option value="Might be a danger">Might be a danger</option>
+              </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                <label>Description</label>
+                <textarea rows="5" class="form-control border-input"
+                        id="description"
+                        v-model="object.description"
+                        no-resize=true
+                        required>
+                </textarea>
+            </div>
+         </div>
       </div>
         <b-button type="submit" variant="primary" @click.stop="notifyVue('bottom', 'right')">Update</b-button>
       </b-form>
 </card>
 </div>
 </div>
-    </div>
-  </div>
+</div>
+</div>
 </template>
 
 <script>
