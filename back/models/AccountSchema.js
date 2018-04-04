@@ -33,24 +33,5 @@ AccountSchema.pre('save', function (next) {
   })
 });
 
-/* AccountSchema.statics.authenticate = function (email, password, callback) {
-  Account.findOne({ email: email })
-    .exec(function (err, account) {
-      if (err) {
-        return callback(err)
-      } else if (!account) {
-        var err = new Error('Account not found.');
-        err.status = 401;
-        return callback(err);
-      }
-      bcrypt.compare(password, account.password, function (err, result) {
-        if (result === true) {
-          return callback(null, account);
-        } else {
-          return callback();
-        }
-      })
-    });
-}*/ 
 var Account = mongoose.model('Account', AccountSchema);
 module.exports = Account;

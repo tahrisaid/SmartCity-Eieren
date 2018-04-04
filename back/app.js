@@ -9,14 +9,13 @@ var db=require('./models/database')
 var index = require('./routes/index');
 var users = require('./routes/users');;
 var object = require('./api/object');
-<<<<<<< HEAD
+
 var account = require ('./api/Account');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
-=======
+
 var claim = require('./api/claim');
->>>>>>> 7fc378086793448a0798731edc613a973a759070
 var app = express();
 
 // view engine setup
@@ -34,11 +33,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/object', object);
-<<<<<<< HEAD
+
 app.use('/account',account);
-=======
+
 app.use('/claim', claim);
->>>>>>> 7fc378086793448a0798731edc613a973a759070
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -5,6 +5,28 @@ var router = express.Router();
 
 
 
+router.post('/login:email',function (req,res) {
+    //var email = req.params.email;
+        Account.findOne({ email: email })
+          .exec(function (err, account) {
+            if (err) {
+              return callback(err)
+            } else if (!account) {
+              var err = new Error('User not found.');
+              err.status = 401;
+              return callback(err);
+            }
+            bcrypt.compare(password, account.password, function (err, result) {
+              if (result === true) {
+                return callback(null, account);
+                console.log("connecté");
+              } else {
+                return callback();
+                console.log("non connecté")
+              }
+            })
+          });
+})
 
 /* post */
 router.post('/', function (req, res) {

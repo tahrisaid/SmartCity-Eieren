@@ -17,10 +17,10 @@
                     :state="state" 
                     label="username"
                     placeholder="username"
-                    v-model.trim="account.username"
+                    v-model.trim="account.accountname"
                     required>
           </fg-input>
-          <fg-input type="text"
+          <fg-input type="password"
                     id="password"
                     :state="state" 
                     label="password"
@@ -28,7 +28,7 @@
                     v-model.trim="account.password"
                     required>
           </fg-input>
-          <fg-input type="text"
+          <fg-input type="password"
                     id="passwordConf"
                     :state="state" 
                     label="passwordConf"

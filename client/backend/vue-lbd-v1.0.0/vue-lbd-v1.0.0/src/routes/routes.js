@@ -16,6 +16,7 @@ import showObject from 'src/components/Object/showObject.vue'
 import editObject from 'src/components/Object/editObject.vue'
 import testImg from 'src/components/Object/testImg.vue'
 import signUp from 'src/components/Account/signUp'
+import signIn from 'src/components/Account/signIn'
 
 
 const routes = [
@@ -93,6 +94,11 @@ const routes = [
         path: 'signUp',
         name: 'signUp',
         component: signUp
+      },
+      {
+        path: 'signIn',
+        name: 'signIn',
+        component: signIn
       }
     ]
   },
