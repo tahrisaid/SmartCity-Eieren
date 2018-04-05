@@ -1,0 +1,13 @@
+.DS_Store
+/back/node_modules/
+/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/node_modules/
+dist/
+npm-debug.log
+yarn-error.log
+
+# Editor directories and files
+.idea
+*.suo
+.ntvs
+*.njsproj
+*.sln
