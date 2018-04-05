@@ -1,7 +1,7 @@
 <template>
   <card>
     <h4 slot="header" class="card-title">Add an object</h4>
-     <b-form @submit="onSubmit">
+     <b-form @submit="onSubmit" enctype="multipart/form-data">
       <div class="row">
         <div class="col-md-6">
           <fg-input type="text"
@@ -14,9 +14,20 @@
           </fg-input>
         </div>
         <div class="col-md-6">
+          <fg-input type="file"
+                    id="img"
+                    :state="state" 
+                    label="img"
+                    v-model.trim="object.img"
+                    required>
+          </fg-input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
          <div class="form-group">
             <label>Previously detected?</label>
-          <select class="form-control border-input" v-model="object.thread">
+          <select class="form-control border-input" v-model="object.thread" required>
           <option value="valeur1" selected disabled>Select if detected or not</option> 
           <option value="Detected" >Detected</option> 
           <option value="Not detected">Not detected</option>
@@ -24,11 +35,13 @@
           </div>
         </div>
       </div>
+
+        
         <div class="row">
         <div class="col-md-12">
           <div class="form-group">
             <label>Degree</label>
-          <select class="form-control border-input" v-model="object.degree">
+          <select class="form-control border-input" v-model="object.degree" required>
           <option value="valeur1" selected disabled>Select the degree of danger</option> 
           <option value="Dangerous">Dangerous</option> 
           <option value="Very Dangerous">Very Dangerous</option>
@@ -52,7 +65,7 @@
         </div>
       </div>
       <div class="text-center">
-        <button class="btn btn-info btn-fill float-right" type="submit" variant="primary" @click.stop="notifyVue('bottom', 'right')">
+        <button class="btn btn-info btn-fill float-right" type="submit" variant="primary" @click.stop>
           Add object
         </button>
       </div>
@@ -84,6 +97,18 @@
         evt.preventDefault()
         axios.post(`http://localhost:3000/object`, this.object)
         .then(response => {
+           const notification = {
+          template: `<span><b>Add Notification</b></br>This object have been added succesfully.</span>`
+        }
+        const color = Math.floor((Math.random() * 4) + 1)
+        this.$notifications.notify(
+          {
+            component: notification,
+            icon: 'nc-icon nc-app',
+            horizontalAlign: 'bottom',
+            verticalAlign: 'right',
+            type: this.type[color]
+          })
           this.$router.push({
             name: 'display-objects',
             params: { id: response.data._id }
@@ -92,20 +117,6 @@
         .catch(e => {
           this.errors.push(e)
         })
-      },
-      notifyVue (verticalAlign, horizontalAlign) {
-        const notification = {
-          template: `<span><b>Add Notification</b></br>This object have been added succesfully.</span>`
-        }
-        const color = Math.floor((Math.random() * 4) + 1)
-        this.$notifications.notify(
-          {
-            component: notification,
-            icon: 'nc-icon nc-app',
-            horizontalAlign: horizontalAlign,
-            verticalAlign: verticalAlign,
-            type: this.type[color]
-          })
       }
     }
   }

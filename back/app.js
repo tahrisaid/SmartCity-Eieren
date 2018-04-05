@@ -14,8 +14,6 @@ var auth = require('./api/auth');
 var account = require ('./api/Account');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-
-
 var claim = require('./api/claim');
 var app = express();
 
@@ -24,6 +22,10 @@ app.use(session({
   resave: true,
   saveUninitialized: false
 }));
+
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

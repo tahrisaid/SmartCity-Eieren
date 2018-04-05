@@ -16,8 +16,7 @@
           </drop-down>
           <li class="nav-item">
              <b-form @submit="logOut">
-             
-             <button class="btn btn-info btn-fill float-right" type="submit"  @click.stop>
+             <button class="btn btn-info btn-fill float-right" type="submit" variant="primary" @click.stop>
                   Log out
                   </button>
                   </b-form>
@@ -52,7 +51,6 @@
           })
           })
           .catch(e => {
-          
           })
         },
        

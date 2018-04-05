@@ -7,7 +7,7 @@ var objectSchema=mongoose.Schema({
     degree:{type:String,required:true,minlength:1,trim:true},
     thread:{type:String,required:true,minlength:1,trim:true},
     dateAjout:{type:Date,default:Date.now()},
-    img:{ data: Buffer, contentType: String }
+    img:{ data: Buffer, contentType: String}
     
 });
 
