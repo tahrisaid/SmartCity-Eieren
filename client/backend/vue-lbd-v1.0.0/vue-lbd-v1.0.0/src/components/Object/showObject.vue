@@ -22,7 +22,7 @@
         </template>
         <hr class="my-4">
         <b-btn variant="success" @click.stop="editObject(object._id)">Edit</b-btn>
-        <b-btn variant="danger" @click.stop="deleteObject(object._id),notifyVue('bottom', 'right')">Delete</b-btn>
+        <b-btn variant="danger" @click.stop="deleteObject(object._id)">Delete</b-btn>
       </b-jumbotron>
     </b-col>
   </b-row>
@@ -71,16 +71,7 @@ export default {
     deleteObject (objectId) {
       axios.delete('http://localhost:3000/object/' + objectId)
       .then((result) => {
-        this.$router.push({
-          name: 'display-objects'
-        })
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
-    },
-    notifyVue (verticalAlign, horizontalAlign) {
-      const notification = {
+        const notification = {
         template: `<span><b>Removal Notification</b></br>This object have been removed succesfully.</span>`
       }
       const color = Math.floor((Math.random() * 4) + 1)
@@ -88,10 +79,17 @@ export default {
         {
           component: notification,
           icon: 'nc-icon nc-app',
-          horizontalAlign: horizontalAlign,
-          verticalAlign: verticalAlign,
+          horizontalAlign: 'bottom',
+          verticalAlign: 'right',
           type: this.type[color]
         })
+        this.$router.push({
+          name: 'display-objects'
+        })
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
     }
   }
 }

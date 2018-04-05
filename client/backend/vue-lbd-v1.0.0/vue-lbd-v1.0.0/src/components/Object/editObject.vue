@@ -53,7 +53,7 @@
             </div>
          </div>
       </div>
-        <b-button type="submit" variant="primary" @click.stop="notifyVue('bottom', 'right')">Update</b-button>
+        <b-button type="submit" variant="primary" @click.stop>Update</b-button>
       </b-form>
 </card>
 </div>
@@ -94,6 +94,18 @@ export default {
       evt.preventDefault()
       axios.put(`http://localhost:3000/object/` + this.$route.params.id, this.object)
       .then(response => {
+        const notification = {
+        template: `<span><b>Edit Notification</b></br>This object have been edited succesfully.</span>`
+      }
+      const color = Math.floor((Math.random() * 4) + 1)
+      this.$notifications.notify(
+        {
+          component: notification,
+          icon: 'nc-icon nc-app',
+          horizontalAlign: 'bottom',
+          verticalAlign: 'right',
+          type: this.type[color]
+        })
         this.$router.push({
           name: 'show-object',
           params: { id: this.$route.params.id }
@@ -102,21 +114,10 @@ export default {
       .catch(e => {
         this.errors.push(e)
       })
-    },
-    notifyVue (verticalAlign, horizontalAlign) {
-      const notification = {
-        template: `<span><b>Edit Notification</b></br>This object have been edited succesfully.</span>`
-      }
-      const color = Math.floor((Math.random() * 4) + 1)
-      this.$notifications.notify(
-        {
-          component: notification,
-          icon: 'nc-icon nc-app',
-          horizontalAlign: horizontalAlign,
-          verticalAlign: verticalAlign,
-          type: this.type[color]
-        })
     }
+    
+      
+    
   }
 }
 </script>
