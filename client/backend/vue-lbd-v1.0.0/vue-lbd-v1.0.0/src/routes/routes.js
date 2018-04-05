@@ -26,6 +26,16 @@ const routes = [
     redirect: '/admin/overview'
   },
   {
+    path: '/signUp',
+    name: 'signUp',
+    component: signUp
+  },
+  {
+    path: '/signIn',
+    name: 'signIn',
+    component: signIn
+  },
+  {
     path: '/admin',
     component: DashboardLayout,
     redirect: '/admin/overview',
@@ -89,16 +99,6 @@ const routes = [
         path: 'testImg',
         name: 'testImg',
         component: testImg
-      },
-      {
-        path: 'signUp',
-        name: 'signUp',
-        component: signUp
-      },
-      {
-        path: 'signIn',
-        name: 'signIn',
-        component: signIn
       }
     ]
   },

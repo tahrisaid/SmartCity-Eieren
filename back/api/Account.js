@@ -2,33 +2,31 @@ var Account = require('./../models/AccountSchema');
 var express = require('express');
 var fs = require('fs');
 var router = express.Router();
+var jwt=require('jsonwebtoken');
+var bcrypt = require('bcrypt-nodejs');
 
+router.post('/login',function (req,res) {
 
+  Account.findOne({email:req.body.email},function(err,account) {
+       if(err)
+           res.send(err);
+       if(!account)
+           res.status(401).json(account);
+       else{
+           if(bcrypt.compareSync(req.body.password,account.password)){
+               console.log('account found');
+               req.session.userId = account._id;
+               console.log(req.session.userId);
+               var token=jwt.sign({email:account.email},'s3cr3t',{expiresIn:3600});
+               res.status(200).json({success:true,token:token});
+           }else{
+               res.status(401).json('Unauthorized');
+           }
+       }
+   });
+});
 
-router.post('/login:email',function (req,res) {
-    //var email = req.params.email;
-        Account.findOne({ email: email })
-          .exec(function (err, account) {
-            if (err) {
-              return callback(err)
-            } else if (!account) {
-              var err = new Error('User not found.');
-              err.status = 401;
-              return callback(err);
-            }
-            bcrypt.compare(password, account.password, function (err, result) {
-              if (result === true) {
-                return callback(null, account);
-                console.log("connecté");
-              } else {
-                return callback();
-                console.log("non connecté")
-              }
-            })
-          });
-})
-
-/* post */
+/* Register */
 router.post('/', function (req, res) {
    var account = new Account(req.body);
     account.save(function (err, account) {
@@ -40,7 +38,7 @@ router.post('/', function (req, res) {
     
 });
 
-/*get all*/
+/*get users*/
 router.get('/', function (req, res, next) {
 
   Account.find(function (err, accounts) {
@@ -58,6 +56,19 @@ router.get('/', function (req, res, next) {
   });
 });
 
+/* log out */
+router.get('/logout', function(req, res, next) {
+  if (req.session) {
+    // delete session object
+    req.session.destroy(function(err) {
+      if(err) {
+        return next(err);
+      } else {
+        console.log('mchet')
+      }
+    });
+  }
+});
 
 module.exports = router;
 

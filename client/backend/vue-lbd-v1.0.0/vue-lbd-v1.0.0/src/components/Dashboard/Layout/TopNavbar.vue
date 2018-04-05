@@ -15,9 +15,12 @@
             <a class="dropdown-item" href="#">Separated link</a>
           </drop-down>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              Log out
-            </a>
+             <b-form @submit="logOut">
+             
+             <button class="btn btn-info btn-fill float-right" type="submit"  @click.stop>
+                  Log out
+                  </button>
+                  </b-form>
           </li>
         </ul>
       </div>
@@ -25,6 +28,7 @@
   </nav>
 </template>
 <script>
+  import axios from 'axios'
   export default {
     computed: {
       routeName () {
@@ -37,7 +41,21 @@
         activeNotifications: false
       }
     },
-    methods: {
+    methods:{
+    logOut (evt) {
+           evt.preventDefault()
+          axios.get(`http://localhost:3000/account/logout`)
+          .then(response => {
+            this.$router.push({
+            name: 'signIn',
+            params: { id: response.data._id }
+          })
+          })
+          .catch(e => {
+          
+          })
+        },
+       
       capitalizeFirstLetter (string) {
         return string.charAt(0).toUpperCase() + string.slice(1)
       },

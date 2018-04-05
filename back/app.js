@@ -9,6 +9,7 @@ var db=require('./models/database')
 var index = require('./routes/index');
 var users = require('./routes/users');;
 var object = require('./api/object');
+var auth = require('./api/auth');
 
 var account = require ('./api/Account');
 var session = require('express-session');
@@ -17,6 +18,12 @@ var MongoStore = require('connect-mongo')(session);
 
 var claim = require('./api/claim');
 var app = express();
+
+app.use(session({
+  secret: 'work hard',
+  resave: true,
+  saveUninitialized: false
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

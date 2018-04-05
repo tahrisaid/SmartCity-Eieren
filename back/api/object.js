@@ -2,7 +2,7 @@ var Object = require('./../models/ObjectSchema');
 var express = require('express');
 var fs = require('fs');
 var router = express.Router();
-
+var authenticate=require('../api/auth').authenticate;
 
 
 /* post */
@@ -19,7 +19,7 @@ router.post('/', function (req, res) {
 
 
 /*get all*/
-router.get('/', function (req, res, next) {
+router.get('/',function (req, res, next) {
 
     Object.find(function (err, objects) {
         if (err) {
