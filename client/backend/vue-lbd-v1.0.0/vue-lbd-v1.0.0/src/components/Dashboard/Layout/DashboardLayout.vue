@@ -6,6 +6,10 @@
         <i class="nc-icon nc-chart-pie-35"></i>
         <p>Dashboard</p>
       </sidebar-link>
+      <sidebar-link to="/admin/display-claims">
+        <i class="nc-icon nc-email-85"></i>
+        <p>Claims</p>
+      </sidebar-link>
       <sidebar-link to="/admin/display-objects">
         <i class="nc-icon nc-notes"></i>
         <p>Objects</p>

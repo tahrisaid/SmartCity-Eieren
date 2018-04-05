@@ -17,6 +17,10 @@ import editObject from 'src/components/Object/editObject.vue'
 import testImg from 'src/components/Object/testImg.vue'
 import signUp from 'src/components/Account/signUp'
 import signIn from 'src/components/Account/signIn'
+import addClaim from 'src/components/Claim/addClaim.vue'
+import DisplayClaims from 'src/components/Claim/displayClaims.vue'
+import showClaim from 'src/components/Claim/showClaim.vue'
+
 
 
 const routes = [
@@ -94,6 +98,21 @@ const routes = [
         path: 'edit-object/:id',
         name: 'edit-object',
         component: editObject
+      },
+      {
+        path: 'display-claims',
+        name: 'display-claims',
+        component: DisplayClaims
+      },
+      {
+        path: 'add-claim',
+        name: 'add--claim',
+        component: addClaim
+      },
+      {
+        path: 'show-claim/:id',
+        name: 'show-claim',
+        component: showClaim
       },
       {
         path: 'testImg',

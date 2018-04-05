@@ -48,7 +48,7 @@ router.get('/:id', function (req, res) {
 
         }
         else {
-            res.json(calim);
+            res.json(claim);
 
         }
     });
