@@ -7,7 +7,7 @@
       <div class="logo">
         <a href="#" class="simple-text">
             <div class="logo-img">
-                <img src="static/img/vue-logo.png" alt="">
+                <img src="static/img/vue-logo.GIF" alt="">
             </div>
           {{title}}
         </a>
@@ -40,7 +40,7 @@
     props: {
       title: {
         type: String,
-        default: 'Vue LBD'
+        default: 'Smart City'
       },
       backgroundColor: {
         type: String,
