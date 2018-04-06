@@ -7,8 +7,7 @@
           </add-claim-form>
         </div>
         <div class="col-md-4">
-          <user-card>
-          </user-card>
+        
         </div>
       </div>
     </div>
