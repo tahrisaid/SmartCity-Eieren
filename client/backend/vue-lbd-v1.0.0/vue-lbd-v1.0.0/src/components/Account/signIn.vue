@@ -11,7 +11,7 @@
                <br><br><br>
                <div class="form-group">
                   <input type="text" id="email"
-                     :state="state" 
+                     :state="state"
                      placeholder="Email"
                      v-model.trim="account.email"
                      required />
@@ -20,7 +20,7 @@
                <br>
                <div class="form-group">
                   <input type="password"  id="password"
-                     :state="state" 
+                     :state="state"
                      placeholder="Password"
                      v-model.trim="account.password"
                      required />
@@ -52,7 +52,8 @@
    body {
    height: 100%;
    font-family: 'Roboto', sans-serif;
-   background: linear-gradient(to left, $green-dark , $green-light);
+     background:url("../../../static/img/smartCity.jpg")no-repeat;
+
    }
    .container {
    display: flex;
@@ -95,7 +96,7 @@
    transform: scaleX(-1);
    z-index: -1;
    //background: url(https://source.unsplash.com/Qmox1MkYDnY/900x500) no-repeat;
-   background-color:#D4D9D9;
+   background-color:#c2d1ff;
    }
    form {
    width: 50%;
@@ -120,7 +121,7 @@
    color: $grey;
    }
    }
-   .form-group input[type="text"], 
+   .form-group input[type="text"],
    .form-group input[type="password"] {
    border: none;
    outline: none;
@@ -191,7 +192,7 @@
           })
           })
           .catch(e => {
-          
+
           })
         }
         }

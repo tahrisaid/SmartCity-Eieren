@@ -8,20 +8,20 @@
     <transition name="fade" mode="out-in">
       <component :is="compname" @change_comp="swapcomp($event)"></component>
     </transition>
-    
+
 <template id="signup-form">
       <b-form @submit="onSubmit">
         <div class="form-group">
           <br>
           <input type="text" id="email" name="email"
-                    :state="state" 
+                    :state="state"
                     placeholder="Email"
                     v-model.trim="account.email"
                     required />
         </div><br>
         <div class="form-group">
           <input type="text" id="username"
-                    :state="state" 
+                    :state="state"
                     placeholder="Username"
                     v-model.trim="account.accountname"
                     required />
@@ -29,22 +29,22 @@
         </div><br>
           <div class="form-group">
           <input type="password"  id="password"
-                    :state="state" 
+                    :state="state"
                     placeholder="Password"
                     v-model.trim="account.password"
                     required />
           <span v-show="msg1">{{ pwd1_msg }}</span>
         </div><br>
-      
+
         <div class="form-group">
           <input type="password"  id="passwordConf"
-                    :state="state" 
+                    :state="state"
                     placeholder="Repeat Password"
                     v-model.trim="account.passwordConf"
                     required />
           <span v-show="msg2">{{ pwd2_msg }}</span>
         </div>
-        
+
         <div class="form-group">
           <button :class="{active: disable_btn}" type="submit"  @click.stop>
           Sign Up
@@ -59,7 +59,7 @@
 </template>
 
   <style lang="scss">
- 
+
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 $green-dark: #79CB0A;
@@ -76,7 +76,7 @@ $grey: #8F949B;
 body {
   height: 100%;
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(to left, $green-dark , $green-light);
+  background:url("../../../static/img/smartCity.jpg")no-repeat;
 }
 
 .container {
@@ -89,22 +89,22 @@ body {
 header {
   margin: 30px 0;
   text-align: center;
-  
+
   h2 {
     text-transform: uppercase;
     margin: 0;
   }
-  
+
   p {
     font-size: 1em;
   }
-  
+
   a {
     text-decoration: none;
     border-bottom: 2px dotted $orange-dark;
     color: inherit;
   }
-  
+
 }
 
 .signup {
@@ -126,7 +126,8 @@ header {
   transform: scaleX(-1);
   z-index: -1;
     //background: url(https://source.unsplash.com/Qmox1MkYDnY/900x500) no-repeat;
-   background-color:#D4D9D9;
+  background-color:#c2d1ff;
+
 }
 
 form {
@@ -140,22 +141,22 @@ form .form-group {
   margin: 0 0 20px 0;
   color: $grey;
   font-size: .9em;
-  
+
   label {
     margin: 0 0 16px 0;
   }
-  
+
   span {
     font-size: .8em;
     color: $red;
   }
-  
+
   span#characters {
     font-size: .8em;
     color: $grey;
   }
 }
-.form-group input[type="text"], 
+.form-group input[type="text"],
 .form-group input[type="password"] {
   border: none;
   outline: none;
@@ -172,7 +173,7 @@ form .form-group:last-child {
   justify-content: space-between;
   align-items: center;
   margin: 40px 0 0 0;
-  
+
   button {
     border: none;
     background: linear-gradient(to left, $orange-dark , $orange-light);
@@ -188,7 +189,7 @@ form .form-group:last-child {
     opacity: .5;
     cursor: default;
   }
-  
+
   a {
     color: $grey;
     text-decoration: dotted;
