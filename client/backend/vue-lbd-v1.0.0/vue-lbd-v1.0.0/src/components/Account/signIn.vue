@@ -95,7 +95,7 @@
    height: 100%;
    transform: scaleX(-1);
    z-index: -1;
-   //background: url(https://source.unsplash.com/Qmox1MkYDnY/900x500) no-repeat;
+   //background: url(https://source.unsplash.com/Qmox1MkYDnY/900x500)   no-repeat;
    background-color:#c2d1ff;
    }
    form {
