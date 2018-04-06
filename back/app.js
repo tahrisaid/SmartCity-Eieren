@@ -10,7 +10,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');;
 var object = require('./api/object');
 var auth = require('./api/auth');
-
+var area = require('./api/area');
 var account = require ('./api/Account');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/object', object);
-
+app.use('/area', area);
 app.use('/account',account);
 
 app.use('/claim', claim);

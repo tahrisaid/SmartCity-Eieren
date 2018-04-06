@@ -20,7 +20,10 @@ import signIn from 'src/components/Account/signIn'
 import addClaim from 'src/components/Claim/addClaim.vue'
 import DisplayClaims from 'src/components/Claim/displayClaims.vue'
 import showClaim from 'src/components/Claim/showClaim.vue'
-
+import ManageAreas from 'src/components/Area/areas.vue'
+import addArea from 'src/components/Area/addArea.vue'
+import deleteArea from 'src/components/Area/deleteArea.vue'
+import editArea from 'src/components/Area/editArea.vue'
 
 
 const routes = [
@@ -118,6 +121,26 @@ const routes = [
         path: 'testImg',
         name: 'testImg',
         component: testImg
+      },
+      {
+        path: 'manage-areas',
+        name: 'manage-areas',
+        component: ManageAreas
+      },
+      {
+        path: 'add-area',
+        name: 'add-area',
+        component: addArea
+      },
+      {
+        path: 'delete-area/:id',
+        name: 'delete-area',
+        component: deleteArea
+      },
+      {
+        path: 'edit-area/:id',
+        name: 'edit-area',
+        component: editArea
       }
     ]
   },
