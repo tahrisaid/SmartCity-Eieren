@@ -8,7 +8,7 @@
           <li class="nav-item">
              <b-form @submit="logOut">
              <button class="btn btn-info btn-fill float-right" type="submit" variant="primary" @click.stop>
-                  Log out
+               <router-link :to="{ name: 'signIn'}">Sign In</router-link>
                   </button>
                   </b-form>
           </li>
@@ -44,7 +44,7 @@
           .catch(e => {
           })
         },
-       
+
       capitalizeFirstLetter (string) {
         return string.charAt(0).toUpperCase() + string.slice(1)
       },

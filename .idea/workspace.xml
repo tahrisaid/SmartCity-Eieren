@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b25db90-ac96-4382-b1d9-d707952a3dd2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Claim/addClaim.vue" afterPath="$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Claim/addClaim.vue" />
+      <change beforePath="$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Dashboard/Layout/TopNavbar.vue" afterPath="$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Dashboard/Layout/TopNavbar.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,21 +17,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="addClaimForm.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Claim/addClaimForm.vue">
+      <file leaf-file-name="TopNavbar.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Dashboard/Layout/TopNavbar.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="42" column="69" lean-forward="false" selection-start-line="42" selection-start-column="69" selection-end-line="42" selection-end-column="69" />
+            <state relative-caret-position="147">
+              <caret line="10" column="59" lean-forward="false" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addClaim.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Claim/addClaim.vue">
+      <file leaf-file-name="signIn.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Account/signIn.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+            <state relative-caret-position="357">
+              <caret line="35" column="77" lean-forward="true" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -53,6 +53,7 @@
       <find>from.</find>
       <find>icon</find>
       <find>mike</find>
+      <find>log</find>
     </findStrings>
     <replaceStrings>
       <replace>claim</replace>
@@ -81,6 +82,7 @@
         <option value="$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/UIComponents/SidebarPlugin/SidebarLink.vue" />
         <option value="$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/index.html" />
         <option value="$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Claim/addClaim.vue" />
+        <option value="$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Dashboard/Layout/TopNavbar.vue" />
       </list>
     </option>
   </component>
@@ -186,7 +188,30 @@
               <item name="vue-lbd-v1.0.0" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Claim" type="462c0819:PsiDirectoryNode" />
+              <item name="Account" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pi" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="vue-lbd-v1.0.0" type="462c0819:PsiDirectoryNode" />
+              <item name="vue-lbd-v1.0.0" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Dashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pi" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="vue-lbd-v1.0.0" type="462c0819:PsiDirectoryNode" />
+              <item name="vue-lbd-v1.0.0" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="Layout" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pi" type="b2602c69:ProjectViewProjectNode" />
@@ -270,7 +295,7 @@
       <workItem from="1522865978854" duration="7664000" />
       <workItem from="1522877917071" duration="1552000" />
       <workItem from="1522921954321" duration="1516000" />
-      <workItem from="1522956728322" duration="13621000" />
+      <workItem from="1522956728322" duration="13927000" />
     </task>
     <task id="LOCAL-00001" summary="crud claim">
       <created>1522877115028</created>
@@ -283,7 +308,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24949000" />
+    <option name="totallyTimeSpent" value="25255000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -646,14 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Account/signIn.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="125" column="34" lean-forward="true" selection-start-line="125" selection-start-column="34" selection-end-line="125" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -686,14 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Dashboard/Layout/TopNavbar.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="59" column="6" lean-forward="false" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -714,6 +723,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Account/signIn.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="35" column="77" lean-forward="true" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/backend/vue-lbd-v1.0.0/vue-lbd-v1.0.0/src/components/Dashboard/Layout/TopNavbar.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="10" column="59" lean-forward="false" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
           <folding />
         </state>
       </provider>
