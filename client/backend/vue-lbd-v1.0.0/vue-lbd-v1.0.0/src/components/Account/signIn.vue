@@ -1,12 +1,14 @@
 <template>
    <div class="container">
       <header>
+        <h1><center><strong>Smart City app</strong></center></h1>
       </header>
       <div id="app" class="signup">
          <transition name="fade" mode="out-in">
             <component :is="compname" @change_comp="swapcomp($event)"></component>
          </transition>
          <template id="signup-form">
+          
             <b-form @submit="onSubmit">
                <br><br><br>
                <div class="form-group">
@@ -31,7 +33,7 @@
                   <button :class="{active: disable_btn}" type="submit"  @click.stop>
                   Sign In
                   </button>
-                  <a href="#0" @click="show_terms()">terms & conditions</a>
+                   <router-link :to="{ name: 'signUp'}">Sign Up</router-link>
                </div>
             </b-form>
          </template>
@@ -99,14 +101,14 @@
    background-color:#c2d1ff;
    }
    form {
-   width: 50%;
+   width: 90%;
    height: 80%;
-   padding: 20px 50px 20px 20px;;
+   padding: 20px 50px 20px 20px;
    }
    form .form-group {
    display: flex;
    flex-direction: column;
-   margin: 0 0 20px 0;
+   margin:  0px 0px 20px  0px;
    color: $grey;
    font-size: .9em;
    label {
@@ -188,7 +190,7 @@
           .then(response => {
             this.$router.push({
             name: 'Overview',
-            params: { id: response.data._id }
+            params: { id: response.data._id },
           })
           })
           .catch(e => {

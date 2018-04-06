@@ -1,7 +1,7 @@
 <template>
 <div class="container">
  <header>
-    <h2>Smart City App</h2>
+    <h1><center><strong>Smart City app</strong></center></h1>
       </header>
 
    <div id="app" class="signup">
@@ -49,7 +49,7 @@
           <button :class="{active: disable_btn}" type="submit"  @click.stop>
           Sign Up
         </button>
-         <a href="#0" @click="show_terms()">terms & conditions</a>
+         <router-link :to="{ name: 'signIn'}">Sign In</router-link>
         </div>
       </b-form>
     </template>
@@ -131,7 +131,7 @@ header {
 }
 
 form {
-  width: 50%;
+  width: 90%;
   height: 80%;
   padding: 20px 50px 20px 20px;;
 }
