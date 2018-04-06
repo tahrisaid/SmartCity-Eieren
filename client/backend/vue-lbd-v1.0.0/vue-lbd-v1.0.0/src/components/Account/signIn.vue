@@ -94,7 +94,8 @@
    height: 100%;
    transform: scaleX(-1);
    z-index: -1;
-   background: url(https://source.unsplash.com/Qmox1MkYDnY/900x500) no-repeat;
+   //background: url(https://source.unsplash.com/Qmox1MkYDnY/900x500) no-repeat;
+   background-color:#D4D9D9;
    }
    form {
    width: 50%;
@@ -185,7 +186,7 @@
           axios.post(`http://localhost:3000/account/login`,this.account)
           .then(response => {
             this.$router.push({
-            name: 'display-objects',
+            name: 'Overview',
             params: { id: response.data._id }
           })
           })

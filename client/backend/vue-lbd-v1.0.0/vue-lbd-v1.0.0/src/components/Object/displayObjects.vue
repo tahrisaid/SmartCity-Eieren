@@ -41,7 +41,7 @@
                     {{object.dateAjout}}
                     </td>
                      <td>
-                    {{object.img}}
+                    Img
                     </td>
                     <td>
                       <router-link :to="{ name: 'show-object', params: { id: object._id} }">Show</router-link>

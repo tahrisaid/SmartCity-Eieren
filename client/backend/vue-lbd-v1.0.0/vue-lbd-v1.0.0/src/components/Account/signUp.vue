@@ -1,7 +1,7 @@
 <template>
 <div class="container">
  <header>
-    <h2>Sign Up Form</h2>
+    <h2>Smart City App</h2>
       </header>
 
    <div id="app" class="signup">
@@ -125,7 +125,8 @@ header {
   height: 100%;
   transform: scaleX(-1);
   z-index: -1;
-  background: url(https://source.unsplash.com/Qmox1MkYDnY/900x500) no-repeat;
+    //background: url(https://source.unsplash.com/Qmox1MkYDnY/900x500) no-repeat;
+   background-color:#D4D9D9;
 }
 
 form {

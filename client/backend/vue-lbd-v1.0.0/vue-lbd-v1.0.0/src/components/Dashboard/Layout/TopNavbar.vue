@@ -5,15 +5,6 @@
         <ul class="nav navbar-nav mr-auto">
         </ul>
         <ul class="navbar-nav ml-auto">
-          <drop-down title="Action">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something</a>
-            <div class="divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </drop-down>
           <li class="nav-item">
              <b-form @submit="logOut">
              <button class="btn btn-info btn-fill float-right" type="submit" variant="primary" @click.stop>
