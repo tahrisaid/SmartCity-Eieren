@@ -11,8 +11,8 @@ var Object = require(
   /****** Add object *******/
   router.post('/', function(req, res) {
     var object = new Object(req.body);
-    object.img.data = fs.readFileSync(imgPath);
-    object.img.contentType = 'image/png';
+   /* object.img.data = fs.readFileSync(imgPath);
+    object.img.contentType = 'image/png';*/
     object.save(function(err, object) {
       if (err) {
         res.send(err);
@@ -81,7 +81,6 @@ var Object = require(
       name: req.body.name,
       description: req.body.description,
       thread: req.body.thread,
-      dateAjout: req.body.dateAjout,
       degree: req.body.degree
     }, function(err, object) {
       if (err) res.json(err);
