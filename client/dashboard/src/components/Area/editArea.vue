@@ -25,6 +25,7 @@
             </fg-input>
         </div>
       </div>
+      <br>
         <div class="row">
           <div class="col-md-6">
             <fg-input type="number"
@@ -52,10 +53,11 @@
             </fg-input>
           </div>
         </div>
+        <br>
         <b-button class="btn btn-warning" type="submit" variant="primary" @click.stop>Update</b-button>
         <router-link class="btn btn-info" to="/admin/manage-areas">Cancel</router-link>
         <br><br>
-          <router-link class="btn btn-danger" :to="{ name: 'delete-area', params: { id: area._id } }">(Delete Area)</router-link>
+          <router-link class="btn btn-danger" :to="{ name: 'delete-area', params: { id: area._id } }">Delete ?</router-link>
       
       </b-form>
 </card>

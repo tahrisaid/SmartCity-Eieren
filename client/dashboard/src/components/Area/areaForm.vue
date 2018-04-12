@@ -51,17 +51,33 @@
       </div>
       <div class="clearfix"></div>
     </b-form>
+      <gmap-map
+  :center="{lat:10, lng:10}"
+  :zoom="7"
+  map-type-id="terrain"
+  style="width: 500px; height: 300px"
+></gmap-map>
   </card>
 </template>
 <script>
   import Card from 'src/components/UIComponents/Cards/Card.vue'
 
   import axios from 'axios'
-
+  import Vue from 'vue'
+  import * as VueGoogleMaps from 'vue2-google-maps'
+  Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyAdn8zt_z1fKbW_QaGaTWmhuo5KUGZfNVw',
+    libraries: 'places', // This is required if you use the Autocomplete plugin
+    // OR: libraries: 'places,drawing'
+    // OR: libraries: 'places,drawing,visualization'
+    // (as you require)
+  }
+})
   export default {
     name: 'CreateArea',
     components: {
-      Card
+      Card, VueGoogleMaps
     },
     data () {
       return {
