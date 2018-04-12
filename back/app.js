@@ -75,6 +75,7 @@ app.use(function(req, res, next) {
     console.log('finished');
   });
 */
+
 // error handler    
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -110,8 +111,7 @@ app.post('/uploads', upload.single('image'), (req, res) => {
 });
 
 
-/******************Alerts after detection  ************/
-
+/**************  Alerts after detection (Mail exp)  ************/
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -127,7 +127,6 @@ var mailOptions = {
   text: 'Yo, this is Eieren. I am sending you this email to warn you about a threat in your area. Please be carreful!'
 };
 
-
 /**************** Reading socket from python ****************/
 server.listen(port1);
 server.on('connection', function(socket) {
@@ -140,32 +139,27 @@ server.on('connection', function(socket) {
   var isRunning = false;
   var streatTimeout;
 
-  
-  
-
   socket.on('data', function(data) {
       var str= data.toString();
       console.log(str);
-      if (str.indexOf('person') > -1)
+      //If the detected objects are a gun or a knive, send alerts
+      if (str.indexOf('knive') > -1 || str.indexOf('gun') > -1)
       {
-          /*transporter.sendMail(mailOptions, function(error, info){
+          transporter.sendMail(mailOptions, function(error, info){
               if (error) {
                   console.log(error);
               } else {
                   console.log('Email sent: ' + info.response);
               }
-          });*/
+          });
           console.log('Detection from Python arrived to NodeJs server')
       }
       //io.emit(array[0],array)
   });
 });
 
-
 var NodeWebcam = require( "node-webcam" );
 var opts = {
-
-  //Picture related
 
   width: 1280,
 
