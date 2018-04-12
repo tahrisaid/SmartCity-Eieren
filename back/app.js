@@ -15,6 +15,7 @@ var crimeroute = require('./routes/crime');
 var crimeapi = require('./api/crime');
 var auth = require('./api/auth');
 var area = require('./api/area');
+var criminal = require('./api/criminal');
 var account = require ('./api/Account');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
@@ -55,7 +56,7 @@ app.use('/users', users);
 app.use('/object', object);
 app.use('/area', area);
 app.use('/account',account);
-
+app.use('/criminal',criminal);
 app.use('/claim', claim);
 app.use('/predictModels', predictModels);
 app.use('/predictModel', predictModel);
