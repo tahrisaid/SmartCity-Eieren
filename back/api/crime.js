@@ -21,6 +21,24 @@ router.get('/all',function (req,res) {
         }
     });
 });
+/*get nbr prediction*/
+router.get('/nbrcrime',function (req,res) {
+    
+    User.find().count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
 /* post */
 router.post('/register',function (req,res) {
     var user=new User(req.body);

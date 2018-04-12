@@ -125,7 +125,7 @@ Vue.use(VueGoogleHeatmap, {
           .then(response => {
             let latlon = new google.maps.MVCArray();
             response.data.result.forEach(function(coord) {
-                latlon.push(new google.maps.LatLng(coord.lat, coord.lng));
+                latlon.push(new google.maps.LatLng(this.fields.lat, this.fields.lng));
             });
             let x = new google.maps.visualization.HeatmapLayer({
               data: latlon,

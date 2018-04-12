@@ -1,6 +1,7 @@
 <template>
 
   <div class="content">
+
       <div class="row">
 
   <div class="col-md-8" >    
@@ -12,7 +13,6 @@
               </div>
 </div>
                         <br>
-                        <p class="text-success">List of All type of crimes identified by the IA algorithms </p>
 
  
 
@@ -20,14 +20,45 @@
       
       <div class="row">
         
-        <div class="ccol-md-6">
+        <div class="col-md-4">
           <stats-card>
             <div slot="header" class="icon-warning">
-              <i class="nc-icon nc-chart text-warning"></i>
+            <img src="static/img/poss.png" width="40px" height="60px"/> {{fruit}}
             </div>
             <div slot="content">
-              <p class="card-category">Possibilties of crime that might happen</p>
-              <h4 class="card-title">{{this.nbr.valueOf()}} </h4>
+              <p class="card-category">Possibilties of crimes </p>
+              <h4 class="card-title">
+{{this.nbr.valueOf()}}</h4>
+            </div>
+            <div slot="footer">
+            PREDICTION
+            </div>
+          </stats-card>
+        </div>
+        <div class="col-md-4">
+          <stats-card>
+            <div slot="header" class="icon-warning">
+            <img src="static/img/dataset.png" width="40px" height="40px"/> {{fruit}}
+            </div>
+            <div slot="content">
+              <p class="card-category">Crimes in our dataset</p>
+              <h4 class="card-title">
+{{this.nbrcrime .valueOf()}}</h4>
+            </div>
+            <div slot="footer">
+            PREDICTION
+            </div>
+          </stats-card>
+        </div>
+        <div class="col-md-4">
+          <stats-card>
+            <div slot="header" class="icon-warning">
+            <img src="static/img/crimetype.png" width="40px" height="40px"/> {{fruit}}
+            </div>
+            <div slot="content">
+              <p class="card-category">Number type of crimes</p>
+              <h4 class="card-title">
+{{this.nbrtype}}</h4>
             </div>
             <div slot="footer">
             PREDICTION
@@ -43,13 +74,37 @@
 
       </div>
      
+         <div class="col-md-12">
+      <reactive-prop-example :chart-data="dataPoints"/>
+  
+      <doughnut-example/>
+   
+
+   
+      <pie-example/>
+   
+
+   
+      <radar-example/>
+   
+
+   
+      <polar-area-example/>
+    
+
+
+      <bubble-example />
+   
+
+
+      <scatter-example />
+    
+      <custom-line />
+  </div>
 
      
     </div>
-              <img src="static/img/Graphs/CrimesByHour.png" width="750px" height="500px"/>
-              <img src="static/img/Graphs/CrimeCounts.png" width="750px" height="500px"/>
-              <img src="static/img/Graphs/WeaponLaws_heat.png" width="750px" height="500px"/>
-              <img src="static/img/Graphs/WeaponLaws_scatter.png" width="750px" height="500px"/>
+            
 
 
 
@@ -57,8 +112,9 @@
    <div class="col-md-4">
     <div class="card card-user">
       <div class="card-body">
-        Type of crimes in the dataset
-          <div  v-for="(fruit, index) in this.field.valueOf()" :key="`fruit-${index}`" class="alert alert-warning" id="box"> {{fruit}}
+                        <p class="text-success">List of All type of crimes identified by the IA algorithms </p>
+          <div  v-for="(fruit, index) in this.field.valueOf()" :key="`fruit-${index}`" class="alert crimes" id="box">
+            <img src="static/img/crime.png" width="40px" height="40px"/> {{fruit}}
   </div>
     </div>
     </div>
@@ -76,6 +132,20 @@
   import Card from 'src/components/UIComponents/Cards/Card.vue'
   import LTable from 'src/components/UIComponents/Table.vue'
   import Checkbox from 'src/components/UIComponents/Inputs/Checkbox.vue'
+  import { Bar } from 'src/components/DashBoard/views/BaseCharts'
+  import { reactiveData } from 'src/components/DashBoard/views/mixins'
+  import BarExample from 'src/components/DashBoard/views/examples/BarExample'
+  import LineExample from 'src/components/DashBoard/views/examples/LineExample'
+  import DoughnutExample from 'src/components/DashBoard/views/examples/DoughnutExample'
+  import PieExample from 'src/components/DashBoard/views/examples/PieExample'
+  import RadarExample from 'src/components/DashBoard/views/examples/RadarExample'
+  import PolarAreaExample from 'src/components/DashBoard/views/examples/PolarAreaExample'
+  import BubbleExample from 'src/components/DashBoard/views/examples/BubbleExample'
+  import ReactiveExample from 'src/components/DashBoard/views/examples/ReactiveExample'
+  import ReactivePropExample from 'src/components/DashBoard/views/examples/ReactivePropExample'
+  import ScatterExample from 'src/components/DashBoard/views/examples/ScatterExample'
+  import HorizontalBarExample from 'src/components/DashBoard/views/examples/HorizontalBarExample'
+  import CustomLine from 'src/components/DashBoard/views/examples/CustomExample'
 import * as d3 from 'd3';
 
  import axios from 'axios'
@@ -88,26 +158,78 @@ import * as d3 from 'd3';
       Card,
       LTable,
       ChartCard,
-      StatsCard
+      StatsCard,
+       BarExample,
+      LineExample,
+      DoughnutExample,
+      CustomLine,
+      PieExample,
+      RadarExample,
+      PolarAreaExample,
+      BubbleExample,
+      ReactiveExample,
+      ReactivePropExample,
+      ScatterExample,
+      HorizontalBarExample
     },
  data: function () {
     return {
       data: [99, 71, 78, 25, 36, 92],
       line: '',
       nbr:0,
+      nbrcrime:0,
       fields:'vide',
-      field: ['test'],
-      errors:[]
+      field: [],
+      nbrtype:0,
+      errors:[],
+      dataPoints: null,
+        height: 20
     }
-  },
-  created: function () {
+  },  methods: {
+      increaseHeight () {
+        this.height += 10
+      },
+      getRandomInt () {
+        return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+      },
+      fillData () {
+        this.dataPoints = {
+          labels: ['January' , 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          datasets: [
+            {
+              label: 'Data One',
+              backgroundColor: '#f87979',
+              data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
+            }
+          ]
+        }
+      }
+    },
+    computed: {
+      myStyles () {
+        return {
+          height: `${this.height}px`,
+          position: 'relative'
+        }
+      }
+    }
+  ,
+    mounted () {
+      setInterval(() => {
+        this.fillData()
+      }, 2000)
+    },
+      created: function () {
    axios.get('http://localhost:3000/predictModel/nbrpredict')
       .then(response => { this.nbr = response.data }).catch(e => { this.errors.push(e) }) ,
+      axios.get('http://localhost:3000/crime/nbrcrime')
+      .then(response => { this.nbrcrime = response.data }).catch(e => { this.errors.push(e) }) ,
    axios.get('http://localhost:3000/predictModel/5abd211cc9684d1c286d9a6b')
       .then(response => { this.fields = Object.keys(response.data);
-                          for( var i = 0; i < Object.keys(response.data).length; i++)
+                          for( var i = 5; i < Object.keys(response.data).length; i++)
                           { 
                           console.log(Object.keys(response.data)[i]);
+                          this.nbrtype++;
                           this.field.push(Object.keys(response.data)[i]);
                             
                           }
@@ -120,6 +242,8 @@ import * as d3 from 'd3';
                        
 }).catch(e => { this.errors.push(e) }) 
       }
+      ,
+     
 
 
 }
@@ -329,6 +453,12 @@ svg{  margin: 25px;
 path{ fill: none;
   stroke: #76BF8A;
   stroke-width:3px;
+}
+.crimes{
+  color:black;
+  background: gray; 
+
+
 }
  
 </style>

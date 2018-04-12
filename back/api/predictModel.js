@@ -237,7 +237,7 @@ router.put('/:id', function(req, res){
 });
 /*analyse and clean*/
 router.get('/analyse', function(req, res) {
-
+        console.log("bonjour");
            
             
         
