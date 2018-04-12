@@ -9,6 +9,10 @@ var db=require('./models/database')
 var index = require('./routes/index');
 var users = require('./routes/users');;
 var object = require('./api/object');
+var predictModels = require('./routes/predictModel');
+var predictModel = require('./api/predictModel');
+var crimeroute = require('./routes/crime');
+var crimeapi = require('./api/crime');
 var auth = require('./api/auth');
 var area = require('./api/area');
 var account = require ('./api/Account');
@@ -53,6 +57,10 @@ app.use('/area', area);
 app.use('/account',account);
 
 app.use('/claim', claim);
+app.use('/predictModels', predictModels);
+app.use('/predictModel', predictModel);
+app.use('/crimes', crimeroute);
+app.use('/crime', crimeapi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -152,5 +160,67 @@ server.on('connection', function(socket) {
       //io.emit(array[0],array)
   });
 });
+
+
+var NodeWebcam = require( "node-webcam" );
+var opts = {
+
+  //Picture related
+
+  width: 1280,
+
+  height: 720,
+
+  quality: 100,
+
+
+  //Delay to take shot
+
+  delay: 0,
+
+
+  //Save shots in memory
+
+  saveShots: true,
+
+
+  // [jpeg, png] support varies
+  // Webcam.OutputTypes
+
+  output: "jpeg",
+
+
+  //Which camera to use
+  //Use Webcam.list() for results
+  //false for default device
+
+  device: false,
+
+
+
+  //Logging
+
+  verbose: false
+
+};
+
+var Webcam = NodeWebcam.create( opts );
+
+
+//Will automatically append location output type
+
+NodeWebcam.capture( "./public/data/capture0.jpg", opts, function( err, data ) {
+
+});
+
+/*
+Webcam.list( function( list ) {
+
+  //Use another device
+
+  var anotherCam = NodeWebcam.create( { device: list[ 0 ] } );
+
+});
+*/
 
 module.exports = app;
