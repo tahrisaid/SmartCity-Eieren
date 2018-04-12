@@ -1,10 +1,19 @@
 <template>
   <div class="wrapper">
+    <div id="map" style="display:none"></div>
     <side-bar>
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/admin/overview">
         <i class="nc-icon nc-chart-pie-35"></i>
         <p>Dashboard</p>
+      </sidebar-link>
+           <sidebar-link to="/admin/EirenBrain">
+        <i class="nc-icon nc-chart-pie-35"></i>
+        <p>Eiren's Brain</p>
+      </sidebar-link>
+       <sidebar-link to="/admin/Maps">
+        <i class="nc-icon nc-pin-3"></i>
+        <p>Crime HEATMAP</p>
       </sidebar-link>
       <sidebar-link to="/admin/display-claims">
         <i class="nc-icon nc-email-85"></i>
@@ -22,6 +31,10 @@
         <i class="nc-icon nc-notes"></i>
         <p>Table list</p>
       </sidebar-link>
+      <sidebar-link to="/admin/manage-areas">
+        <i class="nc-icon nc-pin-3"></i>
+        <p>Areas</p>
+      </sidebar-link>
       <sidebar-link to="/admin/typography">
         <i class="nc-icon nc-paper-2"></i>
         <p>Typography</p>
@@ -29,10 +42,6 @@
       <sidebar-link to="/admin/icons">
         <i class="nc-icon nc-atom"></i>
         <p>Icons</p>
-      </sidebar-link>
-      <sidebar-link to="/admin/manage-areas">
-        <i class="nc-icon nc-pin-3"></i>
-        <p>Areas</p>
       </sidebar-link>
       <sidebar-link to="/admin/notifications">
         <i class="nc-icon nc-bell-55"></i>
