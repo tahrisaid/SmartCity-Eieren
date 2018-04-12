@@ -35,8 +35,6 @@
           </div>
         </div>
       </div>
-
-        
         <div class="row">
         <div class="col-md-12">
           <div class="form-group">
@@ -75,9 +73,7 @@
 </template>
 <script>
   import Card from 'src/components/UIComponents/Cards/Card.vue'
-
   import axios from 'axios'
-
   export default {
     name: 'CreteObject',
     components: {

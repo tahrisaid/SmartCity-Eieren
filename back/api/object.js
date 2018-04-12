@@ -11,8 +11,8 @@ var Object = require(
   /****** Add object *******/
   router.post('/', function(req, res) {
     var object = new Object(req.body);
-    /*object.img.data = fs.readFileSync(imgPath);
-    object.img.contentType = 'image/png';*/
+    object.img.data = fs.readFileSync(imgPath);
+    object.img.contentType = 'image/png';
     object.save(function(err, object) {
       if (err) {
         res.send(err);
@@ -27,9 +27,7 @@ var Object = require(
 
   /****** Get objects *******/
   router.get('/', function(req, res, next) {
-    Object.find(function(err, objects) {
-      /*res.contentType(result.imageType);    
-      res.end(result.image.buffer, "binary");*/
+    Object.find(function(err, objects) { 
       if (err) {
         res.send(err)
         console.log('error')
@@ -37,6 +35,13 @@ var Object = require(
       if (!objects) {
         res.status(404).send();
       } else {
+
+        /*for(var i= 0; i < objects.length; i++)
+        {
+          
+         this.objects[i].img = 'data:image/jpeg;base64,' + btoa(objects[i].img);
+        }*/
+      //  base64Img.img('data:image/png;base64,'+objects.img, '', '1', function(err, filepath) {});
         res.json(objects);
       }
     });

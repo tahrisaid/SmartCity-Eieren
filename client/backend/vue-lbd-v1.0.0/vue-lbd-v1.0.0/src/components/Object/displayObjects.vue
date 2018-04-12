@@ -41,7 +41,8 @@
                     {{object.dateAjout}}
                     </td>
                      <td>
-                    Img
+
+                         <img src="http://127.0.0.1:8080/images/said.jpg" width="100" height="100">
                     </td>
                     <td>
                       <router-link class="btn btn-danger" :to="{ name: 'show-object', params: { id: object._id} }">Show</router-link>
@@ -71,9 +72,23 @@
     },
     data () {
       return {
+        object : {},
         objects: [],
         errors: []
       }
+    }
+    ,
+    methods: {
+          dataUrl(x){
+            console.log(x);
+         return  'data:image/jpg;base64,'+x;
+        /*return 'data:image/jpeg;base64,' + btoa(
+            new Uint8Array(x)
+                .reduce((data, byte) => data + String.fromCharCode(byte), '')
+            );*/
+            
+            //return 'static/img/said.jpg';
+        }
     },
     created () {
       axios
