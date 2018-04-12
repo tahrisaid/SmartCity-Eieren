@@ -6,6 +6,14 @@
         <i class="nc-icon nc-chart-pie-35"></i>
         <p>Dashboard</p>
       </sidebar-link>
+           <sidebar-link to="/admin/EirenBrain">
+        <i class="nc-icon nc-chart-pie-35"></i>
+        <p>Eiren's Brain</p>
+      </sidebar-link>
+       <sidebar-link to="/admin/Maps">
+        <i class="nc-icon nc-pin-3"></i>
+        <p>Crime HEATMAP</p>
+      </sidebar-link>
       <sidebar-link to="/admin/display-claims">
         <i class="nc-icon nc-email-85"></i>
         <p>Claims</p>

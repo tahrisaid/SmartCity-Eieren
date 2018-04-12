@@ -4,6 +4,7 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 
 // Admin pages
 import Overview from 'src/components/Dashboard/Views/Overview.vue'
+import EirenBrain from 'src/components/Dashboard/Views/EirenBrain.vue'
 import UserProfile from 'src/components/Dashboard/Views/UserProfile.vue'
 import TableList from 'src/components/Dashboard/Views/TableList.vue'
 import Typography from 'src/components/Dashboard/Views/Typography.vue'
@@ -76,6 +77,12 @@ const routes = [
         path: 'maps',
         name: 'Maps',
         component: Maps
+      },
+      {
+        path: 'EirenBrain',
+        name: 'EirenBrain',
+        component: EirenBrain
+       
       },
       {
         path: 'notifications',

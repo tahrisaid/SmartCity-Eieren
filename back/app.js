@@ -9,6 +9,10 @@ var db=require('./models/database')
 var index = require('./routes/index');
 var users = require('./routes/users');;
 var object = require('./api/object');
+var predictModels = require('./routes/predictModel');
+var predictModel = require('./api/predictModel');
+var crimeroute = require('./routes/crime');
+var crimeapi = require('./api/crime');
 var auth = require('./api/auth');
 var area = require('./api/area');
 var account = require ('./api/Account');
@@ -46,6 +50,10 @@ app.use('/area', area);
 app.use('/account',account);
 
 app.use('/claim', claim);
+app.use('/predictModels', predictModels);
+app.use('/predictModel', predictModel);
+app.use('/crimes', crimeroute);
+app.use('/crime', crimeapi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
