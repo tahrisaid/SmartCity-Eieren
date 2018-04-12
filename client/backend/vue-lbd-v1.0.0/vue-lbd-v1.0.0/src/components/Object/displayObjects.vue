@@ -44,10 +44,10 @@
                     Img
                     </td>
                     <td>
-                      <router-link :to="{ name: 'show-object', params: { id: object._id} }">Show</router-link>
+                      <router-link class="btn btn-danger" :to="{ name: 'show-object', params: { id: object._id} }">Show</router-link>
                     </td>
                     <td>
-                       <router-link :to="{ name: 'edit-object', params: { id: object._id} }">Edit</router-link>
+                       <router-link class="btn btn-info" :to="{ name: 'edit-object', params: { id: object._id} }">Edit</router-link>
                     </td>
                   </tr>
                 </tbody>
