@@ -1,18 +1,15 @@
-var Object = require(
-    './../models/ObjectSchema');
+var Object = require('./../models/ObjectSchema');
   var express = require('express');
   var fs = require('fs');
   var router = express.Router();
   var authenticate = require('../api/auth').authenticate;
-
-
   var imgPath = '././pics/said.jpg';
 
   /****** Add object *******/
   router.post('/', function(req, res) {
     var object = new Object(req.body);
-    object.img.data = fs.readFileSync(imgPath);
-    object.img.contentType = 'image/png';
+   /* object.img.data = fs.readFileSync(imgPath);
+    object.img.contentType = 'image/png';*/
     object.save(function(err, object) {
       if (err) {
         res.send(err);
@@ -35,12 +32,6 @@ var Object = require(
       if (!objects) {
         res.status(404).send();
       } else {
-
-        /*for(var i= 0; i < objects.length; i++)
-        {
-          
-         this.objects[i].img = 'data:image/jpeg;base64,' + btoa(objects[i].img);
-        }*/
       //  base64Img.img('data:image/png;base64,'+objects.img, '', '1', function(err, filepath) {});
         res.json(objects);
       }
@@ -81,7 +72,6 @@ var Object = require(
       name: req.body.name,
       description: req.body.description,
       thread: req.body.thread,
-      dateAjout: req.body.dateAjout,
       degree: req.body.degree
     }, function(err, object) {
       if (err) res.json(err);
