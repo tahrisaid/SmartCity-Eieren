@@ -90,4 +90,65 @@ app.post('/uploads', upload.single('image'), (req, res) => {
     return res.json('success');
 });
 
+
+var NodeWebcam = require( "node-webcam" );
+var opts = {
+
+  //Picture related
+
+  width: 1280,
+
+  height: 720,
+
+  quality: 100,
+
+
+  //Delay to take shot
+
+  delay: 0,
+
+
+  //Save shots in memory
+
+  saveShots: true,
+
+
+  // [jpeg, png] support varies
+  // Webcam.OutputTypes
+
+  output: "jpeg",
+
+
+  //Which camera to use
+  //Use Webcam.list() for results
+  //false for default device
+
+  device: false,
+
+
+
+  //Logging
+
+  verbose: false
+
+};
+
+var Webcam = NodeWebcam.create( opts );
+
+
+//Will automatically append location output type
+
+NodeWebcam.capture( "./public/data/capture0.jpg", opts, function( err, data ) {
+
+});
+
+/*
+Webcam.list( function( list ) {
+
+  //Use another device
+
+  var anotherCam = NodeWebcam.create( { device: list[ 0 ] } );
+
+});
+*/
 module.exports = app;
