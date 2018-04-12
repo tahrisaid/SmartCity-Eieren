@@ -1,17 +1,14 @@
-var Object = require(
-    './../models/ObjectSchema');
+var Object = require('./../models/ObjectSchema');
   var express = require('express');
   var fs = require('fs');
   var router = express.Router();
   var authenticate = require('../api/auth').authenticate;
-
-
   var imgPath = '././pics/said.jpg';
 
   /****** Add object *******/
   router.post('/', function(req, res) {
     var object = new Object(req.body);
-    /*object.img.data = fs.readFileSync(imgPath);
+   /* object.img.data = fs.readFileSync(imgPath);
     object.img.contentType = 'image/png';*/
     object.save(function(err, object) {
       if (err) {
@@ -27,9 +24,7 @@ var Object = require(
 
   /****** Get objects *******/
   router.get('/', function(req, res, next) {
-    Object.find(function(err, objects) {
-      /*res.contentType(result.imageType);    
-      res.end(result.image.buffer, "binary");*/
+    Object.find(function(err, objects) { 
       if (err) {
         res.send(err)
         console.log('error')
@@ -37,6 +32,7 @@ var Object = require(
       if (!objects) {
         res.status(404).send();
       } else {
+      //  base64Img.img('data:image/png;base64,'+objects.img, '', '1', function(err, filepath) {});
         res.json(objects);
       }
     });
@@ -76,7 +72,6 @@ var Object = require(
       name: req.body.name,
       description: req.body.description,
       thread: req.body.thread,
-      dateAjout: req.body.dateAjout,
       degree: req.body.degree
     }, function(err, object) {
       if (err) res.json(err);

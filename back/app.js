@@ -15,10 +15,19 @@ var crimeroute = require('./routes/crime');
 var crimeapi = require('./api/crime');
 var auth = require('./api/auth');
 var area = require('./api/area');
+var criminal = require('./api/criminal');
 var account = require ('./api/Account');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var claim = require('./api/claim');
+
+/******** Requirements of object detection  ***********/
+var net = require('net');
+var JsonSocket = require('json-socket');
+var port1 = 4545;
+var server = net.createServer();
+var nodemailer = require('nodemailer');
+
 var app = express();
 
 app.use(session({
@@ -28,12 +37,11 @@ app.use(session({
 }));
 
 
-
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -48,7 +56,7 @@ app.use('/users', users);
 app.use('/object', object);
 app.use('/area', area);
 app.use('/account',account);
-
+app.use('/criminal',criminal);
 app.use('/claim', claim);
 app.use('/predictModels', predictModels);
 app.use('/predictModel', predictModel);
@@ -62,7 +70,12 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-
+/*var PythonShell = require('python-shell');
+  PythonShell.run('./api/object_detection_tutorial_webcam.py', function (err) {
+    if (err) throw err;
+    console.log('finished');
+  });
+*/
 
 // error handler    
 app.use(function(err, req, res, next) {
@@ -97,5 +110,112 @@ var upload = multer({ storage: storage });
 app.post('/uploads', upload.single('image'), (req, res) => {
     return res.json('success');
 });
+
+
+/**************  Alerts after detection (Mail exp)  ************/
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+      user: 'eierengod@gmail.com',
+      pass: 'eieren2018'
+  }
+});
+
+var mailOptions = {
+  from: 'eierengod@gmail.com',
+  to: 'said.tahri@esprit.tn',
+  subject: 'Eieren app | Thread alert!!!',
+  text: 'Yo, this is Eieren. I am sending you this email to warn you about a threat in your area. Please be carreful!'
+};
+
+/**************** Reading socket from python ****************/
+server.listen(port1);
+server.on('connection', function(socket) {
+  liste=[];
+  object={};
+  liste.push(socket.remoteAddress);
+  //console.log(liste);
+  socket = new JsonSocket(socket);
+  var n;
+  var isRunning = false;
+  var streatTimeout;
+
+  socket.on('data', function(data) {
+      var str= data.toString();
+      console.log(str);
+      //If the detected objects are a gun or a knive, send alerts
+      if (str.indexOf('knive') > -1 || str.indexOf('gun') > -1)
+      {
+          transporter.sendMail(mailOptions, function(error, info){
+              if (error) {
+                  console.log(error);
+              } else {
+                  console.log('Email sent: ' + info.response);
+              }
+          });
+          console.log('Detection from Python arrived to NodeJs server')
+      }
+      //io.emit(array[0],array)
+  });
+});
+
+var NodeWebcam = require( "node-webcam" );
+var opts = {
+
+  width: 1280,
+
+  height: 720,
+
+  quality: 100,
+
+
+  //Delay to take shot
+
+  delay: 0,
+
+
+  //Save shots in memory
+
+  saveShots: true,
+
+
+  // [jpeg, png] support varies
+  // Webcam.OutputTypes
+
+  output: "jpeg",
+
+
+  //Which camera to use
+  //Use Webcam.list() for results
+  //false for default device
+
+  device: false,
+
+
+
+  //Logging
+
+  verbose: false
+
+};
+
+var Webcam = NodeWebcam.create( opts );
+
+
+//Will automatically append location output type
+
+NodeWebcam.capture( "./public/data/capture0.jpg", opts, function( err, data ) {
+
+});
+
+/*
+Webcam.list( function( list ) {
+
+  //Use another device
+
+  var anotherCam = NodeWebcam.create( { device: list[ 0 ] } );
+
+});
+*/
 
 module.exports = app;
