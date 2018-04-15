@@ -10,6 +10,28 @@
               <p class="card-category">Here is a list of the most recent added objects</p>
             </template>
             <div class="table-responsive">
+
+               <div class="col-md-6">
+              <div class="form-group">
+
+                 <label>Degree of danger</label>
+          <select class="form-control border-input" v-model="searchDanger">
+          <option value="" selected disabled>Select the degree of danger</option> 
+          <option value="Dangerous">Dangerous</option> 
+          <option value="Very Dangerous">Very Dangerous</option>
+          <option value="Might be a danger">Might be a danger</option>
+        </select>
+
+            <label>Previously detected?</label>
+          <select class="form-control border-input" v-model="searchThread">
+          <option value="" disabled selected>Select if detected or not</option> 
+          <option value="Detected" >Detected</option> 
+          <option value="Not detected">Not detected</option>
+        </select>
+          </div>
+              <label>Enter the name of the object here: </label>
+              <fg-input type="text" v-model="search" placeholder="Search objects"></fg-input>
+               </div>
               <table class="table" border="2">
                 <thead class="thead-dark">
                   <tr>
@@ -23,7 +45,7 @@
                     <th scope="col">Edit</th>
                   </tr>
                 </thead>
-                <tbody v-for="object of objects" :key="object.description">
+                <tbody v-for="object of filteredObjets" :key="object.description">
                   <tr>
                     <td>
                     {{object.name}}
@@ -74,7 +96,10 @@
       return {
         object : {},
         objects: [],
-        errors: []
+        errors: [],
+        search:'',
+        searchThread:'',
+        searchDanger:''
       }
     }
     ,
@@ -99,6 +124,14 @@
         .catch(e => {
           this.errors.push(e)
         })
+    },
+    computed:{ //computed property
+      filteredObjets: function(){
+        return this.objects.filter((object) => {
+          return object.name.match(this.search) && object.thread.match(this.searchThread)
+          && object.degree.match(this.searchDanger);
+        })
+      }
     }
   }
 </script>
