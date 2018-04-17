@@ -27,7 +27,7 @@ var JsonSocket = require('json-socket');
 var port1 = 4545;
 var server = net.createServer();
 var nodemailer = require('nodemailer');
-
+var fs = require('fs');
 var app = express();
 
 app.use(session({
@@ -128,36 +128,8 @@ var mailOptions = {
   text: 'Yo, this is Eieren. I am sending you this email to warn you about a threat in your area. Please be carreful!'
 };
 
-/**************** Reading socket from python ****************/
-server.listen(port1);
-server.on('connection', function(socket) {
-  liste=[];
-  object={};
-  liste.push(socket.remoteAddress);
-  //console.log(liste);
-  socket = new JsonSocket(socket);
-  var n;
-  var isRunning = false;
-  var streatTimeout;
 
-  socket.on('data', function(data) {
-      var str= data.toString();
-      console.log(str);
-      //If the detected objects are a gun or a knive, send alerts
-      if (str.indexOf('knive') > -1 || str.indexOf('gun') > -1)
-      {
-          transporter.sendMail(mailOptions, function(error, info){
-              if (error) {
-                  console.log(error);
-              } else {
-                  console.log('Email sent: ' + info.response);
-              }
-          });
-          console.log('Detection from Python arrived to NodeJs server')
-      }
-      //io.emit(array[0],array)
-  });
-});
+//cam
 
 var NodeWebcam = require( "node-webcam" );
 var opts = {
@@ -204,9 +176,7 @@ var Webcam = NodeWebcam.create( opts );
 
 //Will automatically append location output type
 
-NodeWebcam.capture( "./public/data/capture0.jpg", opts, function( err, data ) {
-
-});
+//NodeWebcam.capture( "./public/data/capture0.jpg", opts, function( err, data ) {});
 
 /*
 Webcam.list( function( list ) {
@@ -217,5 +187,86 @@ Webcam.list( function( list ) {
 
 });
 */
+
+//getTime
+
+function getDateTime() {
+
+  var date = new Date();
+
+  var hour = date.getHours();
+  hour = (hour < 10 ? "0" : "") + hour;
+
+  var min  = date.getMinutes();
+  min = (min < 10 ? "0" : "") + min;
+
+  var sec  = date.getSeconds();
+  sec = (sec < 10 ? "0" : "") + sec;
+
+  var year = date.getFullYear();
+
+  var month = date.getMonth() + 1;
+  month = (month < 10 ? "0" : "") + month;
+
+  var day  = date.getDate();
+  day = (day < 10 ? "0" : "") + day;
+
+  return year + "_" + month + "_" + day + "_" + hour + "_" + min + "_" + sec;
+
+}
+
+/**************** Reading socket from python ****************/
+server.listen(port1);
+server.on('connection', function(socket) {
+  liste=[];
+  object={};
+  liste.push(socket.remoteAddress);
+  //console.log(liste);
+  socket = new JsonSocket(socket);
+  var n;
+  var isRunning = false;
+  var streatTimeout;
+
+  socket.on('data', function(data) {
+      var str= data.toString();
+      console.log(str);
+      //If the detected objects are a gun or a knive, send alerts
+      if (str.indexOf('knive') > -1 || str.indexOf('gun') > -1)
+      {
+          transporter.sendMail(mailOptions, function(error, info){
+              if (error) {
+                  console.log(error);
+              } else {
+                  console.log('Email sent: ' + info.response);
+              }
+          });
+          console.log('Detection from Python arrived to NodeJs server')
+      }
+      if (str.indexOf('person') > -1 && str.indexOf('bottle') > -1)
+      {
+        if (!(fs.existsSync("./public/incidents/"+getDateTime().substr(0, 10))))
+         fs.mkdirSync('./public/incidents/'+getDateTime().substr(0, 10));
+
+
+          var min = parseInt(getDateTime().substr(14, 2),10);
+          min=min-1;
+
+          if ((fs.existsSync("./public/incidents/"+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 3)+min.toString())))
+            fs.createReadStream('C:\\Users\\LENOVO\\Documents\\TF\\object_detection\\frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 3)+min.toString()+'/'+getDateTime().substr(14, 5)+'.jpg'));
+          else 
+          {
+            if (!(fs.existsSync("./public/incidents/"+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5))))
+              fs.mkdirSync('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5));
+            fs.createReadStream('C:\\Users\\LENOVO\\Documents\\TF\\object_detection\\frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5)+'/'+getDateTime().substr(14, 5)+'.jpg'));
+          }
+
+
+         }
+
+          
+      }
+      //io.emit(array[0],array)
+  });
+});
 
 module.exports = app;
