@@ -197,6 +197,7 @@ with detection_graph.as_default():
         """ ------------ Fenetre de capture------------""" 
         cv2.imshow('Eieren',cv2.resize(image_np,(700,500)))
         print([category_index.get(value) for index,value in enumerate(classes[0]) if scores[0,index] > 0.5])
+        cv2.imwrite("frame.jpg", cv2.resize(image_np,(700,500)))
         if cv2.waitKey(25) & 0xFF == ord('q'):
              break   
              cv2.destroyAllWindows()
@@ -209,11 +210,8 @@ with detection_graph.as_default():
              sock.connect(server_address)
              veri="The detected object is :"
              veriler = ("%s,%s"%(veri,str([category_index.get(value) for index,value in enumerate(classes[0]) if scores[0,index] > 0.5])))
-             print(veriler)
              sock.sendto(veriler.encode(),('127.0.0.1', 4545))
              time.sleep(0)
-             
-            
 
        
              # -*- coding: utf-8 -*-
