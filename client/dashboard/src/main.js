@@ -1,11 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
+// LightBootstrap plugin
+import LightBootstrap from './light-bootstrap-main'
+
+//VueMateriel plugins
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.css'
+
+//BootstrapVue plugins
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-// LightBootstrap plugin
-import LightBootstrap from './light-bootstrap-main'
+
+
+
 
 // router setup
 import routes from './routes/routes'
@@ -13,6 +22,8 @@ import routes from './routes/routes'
 Vue.use(VueRouter)
 Vue.use(LightBootstrap)
 Vue.use(BootstrapVue)
+Vue.use(VueMaterial);
+Vue.use(BootstrapVue);
 
 // configure router
 const router = new VueRouter({

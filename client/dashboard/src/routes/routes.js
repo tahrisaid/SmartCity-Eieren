@@ -25,7 +25,7 @@ import ManageAreas from 'src/components/Area/areas.vue'
 import addArea from 'src/components/Area/addArea.vue'
 import deleteArea from 'src/components/Area/deleteArea.vue'
 import editArea from 'src/components/Area/editArea.vue'
-
+import displayDynamicObjects from 'src/components/Object/displayDynamicObjects.vue'
 
 const routes = [
   {
@@ -148,7 +148,13 @@ const routes = [
         path: 'edit-area/:id',
         name: 'edit-area',
         component: editArea
+      },
+      {
+        path: 'displayDynamicObjects',
+        name: 'displayDynamicObjects',
+        component: displayDynamicObjects
       }
+      
     ]
   },
   { path: '*', component: NotFound }
