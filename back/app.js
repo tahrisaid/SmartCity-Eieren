@@ -28,6 +28,11 @@ var port1 = 4545;
 var server = net.createServer();
 var nodemailer = require('nodemailer');
 var fs = require('fs');
+var http = require('http');
+var Kairos = require('kairos-api');
+var client = new Kairos('6863aca2', '6156a8b3d4092deddfcb69664328fd24');
+var base64Img = require('base64-img');
+
 var app = express();
 
 app.use(session({
@@ -252,16 +257,69 @@ server.on('connection', function(socket) {
           min=min-1;
 
           if ((fs.existsSync("./public/incidents/"+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 3)+min.toString())))
-            fs.createReadStream('../object_detection/frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 3)+min.toString()+'/'+getDateTime().substr(14, 5)+'.jpg'));
+          {
+               fs.createReadStream('../object_detection/frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 3)+min.toString()+'/'+getDateTime().substr(14, 5)+'.jpg'))
+               var settings = {
+                "image": base64Img.base64Sync('../object_detection/frame.jpg'),
+                "gallery_name": "Arti",
+                "subject_id": getDateTime().substr(0, 14)+min.toString(),
+                multiple_faces: true
+              }
+              client.enroll(settings)
+                .then(function(result) {
+                  console.log(getDateTime().substr(0, 14)+min.toString())
+                 })
+                .catch(function(err) { 
+                    console.log(err)
+                 });
+          }
           else 
           {
             if (!(fs.existsSync("./public/incidents/"+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5))))
+            {
               fs.mkdirSync('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5));
-            fs.createReadStream('../object_detection/frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5)+'/'+getDateTime().substr(14, 5)+'.jpg'));
+              var settings = {
+                "image": base64Img.base64Sync('../object_detection/frame.jpg'),
+                "gallery_name": "Arti",
+                "subject_id": getDateTime().substr(0, 16),
+                multiple_faces: true
+              }
+              client.enroll(settings)
+                .then(function(result) {
+                  console.log(JSON.stringify(result)+getDateTime().substr(0, 16))
+                 })
+                .catch(function(err) { 
+                    console.log(err)
+                 });
+            }  
+            fs.createReadStream('../object_detection/frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5)+'/'+getDateTime().substr(14, 5)+'.jpg'))
           }
 
+      }else if (str.indexOf('person') > -1 )
+      {
+        var settings = {
+          "image": base64Img.base64Sync('../object_detection/frame.jpg'),
+          "gallery_name": "Arti"
+        }
+        client.recognize(settings)
+          //  result: { 
+          //    status: <http status code>, 
+          //    body: <data> 
+          //  } 
+          .then(function(result) {
+            if(JSON.stringify(result).indexOf("success") > -1)
+            {
+              console.log(JSON.stringify(result.body.images[0].candidates[0].subject_id))
+            }
+           })
+          // err -> array: jsonschema validate errors 
+          //        or throw Error 
+          .catch(function(err) { 
+              console.log("errr :"+err)
+           });
 
-         }
+
+      }
 
       //io.emit(array[0],array)
   });

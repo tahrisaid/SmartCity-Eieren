@@ -12,7 +12,11 @@ var criminalSchema=mongoose.Schema({
     hispanic:{type:Float,required:true},
     other:{type:Float,required:true},
 	gender:{type:String,required:true,minlength:1,trim:true},
-    updateDate:{type:Date,default:Date.now()}
+    updateDate:{type:Date,default:Date.now()},
+    recognitions:[{    confidence:{type:String,required:true,minlength:1,trim:true},
+                       viewed:{type:String,required:true,minlength:1,trim:true,default:"Not yet"},
+                       recognitionDate:{type:Date,default:Date.now()}
+                }]
 });
 
 
