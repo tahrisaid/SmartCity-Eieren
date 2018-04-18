@@ -1,6 +1,7 @@
 import DashboardLayout from '../components/Dashboard/Layout/DashboardLayout.vue'
 // GeneralViews
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
+import GoogleMap from '../components/GoogleMap.vue'
 
 // Admin pages
 import Overview from 'src/components/Dashboard/Views/Overview.vue'
@@ -57,6 +58,10 @@ const routes = [
         path: 'user',
         name: 'User',
         component: UserProfile
+      },{
+        path: 'GoogleMap',
+        name: 'GoogleMap',
+        component: GoogleMap
       },
       {
         path: 'table-list',
@@ -82,7 +87,7 @@ const routes = [
         path: 'EirenBrain',
         name: 'EirenBrain',
         component: EirenBrain
-       
+
       },
       {
         path: 'notifications',
@@ -154,7 +159,7 @@ const routes = [
         name: 'displayDynamicObjects',
         component: displayDynamicObjects
       }
-      
+
     ]
   },
   { path: '*', component: NotFound }

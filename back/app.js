@@ -34,9 +34,17 @@ app.use(session({
   secret: 'work hard',
   resave: true,
   saveUninitialized: false
+
 }));
 
-
+app.use(session({
+    cookie: {
+        path    : '/',
+        httpOnly: false,
+        maxAge  : 24*60*60*1000
+    },
+    secret: '1234567890QWERT'
+}));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

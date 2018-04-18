@@ -1,21 +1,21 @@
 <template>
-   <vue-google-heatmap :points="fields"
-                       id="map"
-    :center="center"
-    
-    />
-   
+  <vue-google-heatmap :points="fields"
+                      id="map"
+                      :center="center"
+
+  />
+
 </template>
 <script>
   import Vue from 'vue'
-  
-  import VueGoogleHeatmap from 'vue-google-heatmap';
-   import axios from 'axios'
 
- 
-Vue.use(VueGoogleHeatmap, {
-  apiKey: 'AIzaSyDMc-V1coe0x9lYgPvFTa-JCX6smDAVfyU'
-});
+  import VueGoogleHeatmap from 'vue-google-heatmap';
+  import axios from 'axios'
+
+
+  Vue.use(VueGoogleHeatmap, {
+    apiKey: 'AIzaSyDMc-V1coe0x9lYgPvFTa-JCX6smDAVfyU'
+  });
 
   export default {
     data : function () {
@@ -26,28 +26,28 @@ Vue.use(VueGoogleHeatmap, {
         },
         errors:[],
         fields:[  {lat: 37.786117, lng:-122.440119},
-      {lat: 37.786564, lng:-122.440209},
-      {lat: 37.786905, lng:-122.440270},
-      {lat: 37.786956, lng:-122.440279},
-      {lat: 37.800224, lng:-122.433520},
-      {lat: 37.800155, lng:-122.434101},
-      {lat: 37.800160, lng:-122.434430},
-      {lat: 37.800378, lng:-122.434527},
-      {lat: 37.800738, lng:-122.434598},
-      {lat: 37.800938, lng:-122.434650},
-      {lat: 37.801024, lng:-122.434889},
-      {lat: 37.800955, lng:-122.435392},
-      {lat: 37.800886, lng:-122.435959},
-        {lat: 37.786117, lng:-122.419087676747},
-        {lat: 37.786117, lng:-122.419087676747},
-                {lat: 37.800886, lng:-122.425891675136}],
-         
-          points: [
-                    
-        
-            
-      
-    ],
+          {lat: 37.786564, lng:-122.440209},
+          {lat: 37.786905, lng:-122.440270},
+          {lat: 37.786956, lng:-122.440279},
+          {lat: 37.800224, lng:-122.433520},
+          {lat: 37.800155, lng:-122.434101},
+          {lat: 37.800160, lng:-122.434430},
+          {lat: 37.800378, lng:-122.434527},
+          {lat: 37.800738, lng:-122.434598},
+          {lat: 37.800938, lng:-122.434650},
+          {lat: 37.801024, lng:-122.434889},
+          {lat: 37.800955, lng:-122.435392},
+          {lat: 37.800886, lng:-122.435959},
+          {lat: 37.786117, lng:-122.419087676747},
+          {lat: 37.786117, lng:-122.419087676747},
+          {lat: 37.800886, lng:-122.425891675136}],
+
+        points: [
+
+
+
+
+        ],
         options: {
           styles: [{
             'featureType': 'water',
@@ -90,52 +90,52 @@ Vue.use(VueGoogleHeatmap, {
         }
       }
     },
-  created: function () {
- 
-   axios.get('http://localhost:3000/crime/all')
-      .then(response => { 
-                            
-                                                     
-                             
-                                                        
-                       //  console.log(response.data.length);
+    created: function () {
 
-                          for( var i = 0; i < response.data.length; i++)
-                        { 
-                          this.fields.push({lat:response.data[i].Y,lng:response.data[i].X});
-                          console.log(this.fields[i].lat);
-                          console.log(this.fields[i].lng);
-
-                         
-             
-                          //console.log( this.fields[i].lat);
-                         }
-                                                 
-
-                                                  
+      axios.get('http://localhost:3000/crime/all')
+        .then(response => {
 
 
-}).catch(e => { this.errors.push(e) }) 
-      },
+
+
+          //  console.log(response.data.length);
+
+          for( var i = 0; i < response.data.length; i++)
+          {
+            this.fields.push({lat:response.data[i].Y,lng:response.data[i].X});
+            console.log(this.fields[i].lat);
+            console.log(this.fields[i].lng);
+
+
+
+            //console.log( this.fields[i].lat);
+          }
+
+
+
+
+
+        }).catch(e => { this.errors.push(e) })
+    },
     mounted () {
       this.$nextTick(() => {
         this.$refs.mymap.$mapCreated.then(() => {
           var self = this;
           Http.post("v1/getheatmap")
-          .then(response => {
-            let latlon = new google.maps.MVCArray();
-            response.data.result.forEach(function(coord) {
+            .then(response => {
+              let latlon = new google.maps.MVCArray();
+              response.data.result.forEach(function(coord) {
                 latlon.push(new google.maps.LatLng(this.fields.lat, this.fields.lng));
-            });
-            let x = new google.maps.visualization.HeatmapLayer({
-              data: latlon,
-              map: self.$refs.mymap.$mapObject
-            });            
-          })
+              });
+              let x = new google.maps.visualization.HeatmapLayer({
+                data: latlon,
+                map: self.$refs.mymap.$mapObject
+              });
+            })
         })
-    })
-  }
-  
+      })
+    }
+
   }
 </script>
 <style>
@@ -143,3 +143,4 @@ Vue.use(VueGoogleHeatmap, {
     min-height: calc(100vh - 123px);
   }
 </style>
+

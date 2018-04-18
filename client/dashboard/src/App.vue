@@ -1,12 +1,21 @@
 <template>
-  <div :class="{'nav-open': $sidebar.showSidebar}">
+  <div :class="{'nav-open': $sidebar.showSidebar}" id="app">
     <notifications></notifications>
     <router-view></router-view>
+    <google-map/>
   </div>
 </template>
 
 <script>
-  export default {}
+  import GoogleMap from './components/GoogleMap';
+
+  export default {
+    name: 'App',
+    components: {
+      GoogleMap,
+    },
+  }
+
 </script>
 <style lang="scss">
   .vue-notifyjs.notifications{
@@ -34,5 +43,13 @@
       opacity: 0;
       transform: scale(1.2, 0.7);
     }
+  }
+  #app {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
   }
 </style>
