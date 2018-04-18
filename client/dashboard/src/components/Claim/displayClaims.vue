@@ -17,8 +17,7 @@
                     <th scope="col">Email</th>
                     <th scope="col">Object</th>
                     <th scope="col">Content</th>
-
-                    <th scope="col">Date</th>
+                    <th scope="col">Place</th>
 
                     <th scope="col">Details</th>
 
@@ -36,7 +35,7 @@
                     {{claim.content}}
                     </td>
                     <td>
-                    {{claim.dateAjout}}
+                    {{claim.place}}
                     </td>
 
                     <td>
