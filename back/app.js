@@ -252,19 +252,17 @@ server.on('connection', function(socket) {
           min=min-1;
 
           if ((fs.existsSync("./public/incidents/"+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 3)+min.toString())))
-            fs.createReadStream('C:\\Users\\LENOVO\\Documents\\TF\\object_detection\\frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 3)+min.toString()+'/'+getDateTime().substr(14, 5)+'.jpg'));
+            fs.createReadStream('../object_detection/frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 3)+min.toString()+'/'+getDateTime().substr(14, 5)+'.jpg'));
           else 
           {
             if (!(fs.existsSync("./public/incidents/"+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5))))
               fs.mkdirSync('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5));
-            fs.createReadStream('C:\\Users\\LENOVO\\Documents\\TF\\object_detection\\frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5)+'/'+getDateTime().substr(14, 5)+'.jpg'));
+            fs.createReadStream('../object_detection/frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5)+'/'+getDateTime().substr(14, 5)+'.jpg'));
           }
 
 
          }
 
-          
-      }
       //io.emit(array[0],array)
   });
 });
