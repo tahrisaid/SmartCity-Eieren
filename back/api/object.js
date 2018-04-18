@@ -1,3 +1,4 @@
+
 var Object = require('./../models/ObjectSchema');
   var express = require('express');
   var fs = require('fs');
@@ -5,11 +6,17 @@ var Object = require('./../models/ObjectSchema');
   var authenticate = require('../api/auth').authenticate;
   var imgPath = '././pics/said.jpg';
 
+
+
+  
+
+
   /****** Add object *******/
   router.post('/', function(req, res) {
     var object = new Object(req.body);
-   /* object.img.data = fs.readFileSync(imgPath);
-    object.img.contentType = 'image/png';*/
+    //object.img = fs.readFileSync(imgPath);
+    object.pathOfImg = 'http://127.0.0.1:8080/images/'+req.body.nameOfImg;
+    //object.img.contentType = 'image/png';
     object.save(function(err, object) {
       if (err) {
         res.send(err);
@@ -53,6 +60,30 @@ var Object = require('./../models/ObjectSchema');
       }
     });
   });
+
+  /****** Get object by id *******/
+  router.get('/data/:id', function(req, res) {
+    var id = req.params.id;
+    Object.findById(id).exec(function(
+      err, object) {
+      if (err) {
+        res.send(err)
+      }
+      if (!object) {
+        res.status(404).send();
+      } else {
+        
+        var ch = '';
+        for (var i = 0 ; i< object.img.length ; i++){
+          ch = ch + object.img[i] + ','
+        }
+        console.log(Buffer.from(ch).toString())
+
+        res.json(ch.slice(0, -1));
+      }
+    });
+  });
+  
 
   /****** Delete object *******/
   router.delete('/:id', function(req, res) {

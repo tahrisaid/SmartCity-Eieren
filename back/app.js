@@ -20,6 +20,7 @@ var account = require ('./api/Account');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var claim = require('./api/claim');
+var DetectedObject = require('./models/DetectedObjectSchema');
 
 /******** Requirements of object detection  ***********/
 var net = require('net');
@@ -141,18 +142,34 @@ server.on('connection', function(socket) {
   var streatTimeout;
 
   socket.on('data', function(data) {
+
       var str= data.toString();
       console.log(str);
+
+      
+      /****** Add object *******/
+    /*str  = str.substring(0,str.lenght-1);
+    str  = str.substring(1,str.length);*/
+    
+     /*var ch = {'id':74, 'name':'mouse'}
+       var detectedObject = new DetectedObject(ch);
+        detectedObject.save(function(err, detectedObject) {
+          if (err) {
+            res.send(err);
+            console.log(
+              'Errer before add!!!!'
+            )
+          } else res.send(detectedObject);
+          console.log(
+            'Object added!!!!!')
+        });
+      */
+   
+
+
       //If the detected objects are a gun or a knive, send alerts
       if (str.indexOf('knive') > -1 || str.indexOf('gun') > -1)
       {
-          transporter.sendMail(mailOptions, function(error, info){
-              if (error) {
-                  console.log(error);
-              } else {
-                  console.log('Email sent: ' + info.response);
-              }
-          });
           console.log('Detection from Python arrived to NodeJs server')
       }
       //io.emit(array[0],array)
