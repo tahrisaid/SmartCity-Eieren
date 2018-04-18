@@ -31,7 +31,9 @@
     "session": "^0.1.0",
     "sightengine": "^1.2.1",
     "validator": "^9.4.1",
-    "vue-chartjs": "^3.3.1"
+    "vue-chartjs": "^3.3.1",
+    "vue-google-autocomplete": "^1.1.0",
+    "vue2-google-maps": "^0.9.2"
   },
   "devDependencies": {
     "nodemon": "^1.17.2"
