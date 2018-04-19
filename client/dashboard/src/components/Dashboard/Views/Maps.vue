@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <vue-google-heatmap :points="fields"
                       id="map"
                       :center="center"
