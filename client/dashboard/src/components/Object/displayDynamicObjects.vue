@@ -3,12 +3,14 @@
    <md-table>
       <md-table-header>
          <md-table-row>
-            <md-table-head>dateAjout</md-table-head>
+            <md-table-head>id</md-table-head>
+            <md-table-head>name</md-table-head>
          </md-table-row>
       </md-table-header>
       <md-table-body>
-         <md-table-row v-for="(data, index) in tableData" :key="data.dateAjout">
-            <md-table-cell>{{data.dateAjout}}</md-table-cell>
+         <md-table-row v-for="(data, index) in tableData" :key="data.id">
+            <md-table-cell>{{data.id}}</md-table-cell>
+            <md-table-cell>{{data.name}}</md-table-cell>
          </md-table-row>
       </md-table-body>
    </md-table>
@@ -16,56 +18,26 @@
    </div>
 </template>
 <script>
-
+ 
+ 
 import { StreamDataIo } from 'streamdataio-js-sdk'
 import * as jsonpatch from 'fast-json-patch'
 
 export default {
-
-
    name: 'stockmarket',
 
    data() {
 
        return {
            streamData: null,
-           str:'',
            tableData: []
        }
    },
-    /*methods :{
-        get : function() {
-            var net = require('net');
-            var JsonSocket = require('json-socket');
-            var port1 = 4545;
-            var server = net.createServer();
-            server.listen(port1);
-            server.on('connection', function(socket) {
-                liste=[];
-                object={};
-                liste.push(socket.remoteAddress);
-                //console.log(liste);
-                socket = new JsonSocket(socket);
-                var n;
-                var isRunning = false;
-                var streatTimeout;
-                socket.on('data', function(data) {
-                     str= data.toString();
-                    console.log(str);
-                    if (str.indexOf('person') > -1)
-                    {
-                        //send mail here
-                        console.log('Detection from Python arrived to NodeJs server')
-                    }
-                });
-            });
-        }
-    }*/
    created: function () {
        this.streamData =
            StreamDataIo.createEventSource(
                //str,
-               'http://localhost:3000/object',
+               str,
                'M2UwMGUxMWMtMTE4Ny00MGZhLTkxMjItMzAzMzBhOWIxZjk3',
                []);
        this.streamData.onData(data => {

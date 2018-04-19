@@ -15,7 +15,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
 
-
 // router setup
 import routes from './routes/routes'
 // plugin setup
@@ -24,6 +23,7 @@ Vue.use(LightBootstrap)
 Vue.use(BootstrapVue)
 Vue.use(VueMaterial);
 Vue.use(BootstrapVue);
+
 
 // configure router
 const router = new VueRouter({
