@@ -2,7 +2,7 @@
   <div :class="{'nav-open': $sidebar.showSidebar}" id="app">
     <notifications></notifications>
     <router-view></router-view>
-    <google-map/>
+    
   </div>
 </template>
 

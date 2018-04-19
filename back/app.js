@@ -43,14 +43,8 @@ app.use(session({
 
 }));
 
-app.use(session({
-    cookie: {
-        path    : '/',
-        httpOnly: false,
-        maxAge  : 24*60*60*1000
-    },
-    secret: '1234567890QWERT'
-}));
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -141,46 +135,6 @@ var mailOptions = {
   subject: 'Eieren app | Thread alert!!!',
   text: 'Yo, this is Eieren. I am sending you this email to warn you about a threat in your area. Please be carreful!'
 };
-
-
-<<<<<<< HEAD
-  socket.on('data', function(data) {
-
-      var str= data.toString();
-      console.log(str);
-
-      
-      /****** Add object *******/
-    /*str  = str.substring(0,str.lenght-1);
-    str  = str.substring(1,str.length);*/
-    
-     /*var ch = {'id':74, 'name':'mouse'}
-       var detectedObject = new DetectedObject(ch);
-        detectedObject.save(function(err, detectedObject) {
-          if (err) {
-            res.send(err);
-            console.log(
-              'Errer before add!!!!'
-            )
-          } else res.send(detectedObject);
-          console.log(
-            'Object added!!!!!')
-        });
-      */
-   
-
-
-      //If the detected objects are a gun or a knive, send alerts
-      if (str.indexOf('knive') > -1 || str.indexOf('gun') > -1)
-      {
-          console.log('Detection from Python arrived to NodeJs server')
-      }
-      //io.emit(array[0],array)
-  });
-});
-=======
-//cam
->>>>>>> 644b3e82a001c840e5bcb06dfa9b1e77e970346b
 
 var NodeWebcam = require( "node-webcam" );
 var opts = {
@@ -278,21 +232,37 @@ server.on('connection', function(socket) {
   var isRunning = false;
   var streatTimeout;
 
+
+
   socket.on('data', function(data) {
-      var str= data.toString();
-      console.log(str);
-      //If the detected objects are a gun or a knive, send alerts
-      if (str.indexOf('knive') > -1 || str.indexOf('gun') > -1)
-      {
-          transporter.sendMail(mailOptions, function(error, info){
-              if (error) {
-                  console.log(error);
-              } else {
-                  console.log('Email sent: ' + info.response);
-              }
-          });
-          console.log('Detection from Python arrived to NodeJs server')
-      }
+
+
+
+    var str= data.toString();
+    console.log(str);
+    /****** Add object *******/
+  /*str  = str.substring(0,str.lenght-1);
+  str  = str.substring(1,str.length);*/
+  
+   /*var ch = {'id':74, 'name':'mouse'}
+     var detectedObject = new DetectedObject(ch);
+      detectedObject.save(function(err, detectedObject) {
+        if (err) {
+          res.send(err);
+          console.log(
+            'Errer before add!!!!'
+          )
+        } else res.send(detectedObject);
+        console.log(
+          'Object added!!!!!')
+      });
+    */
+    //If the detected objects are a gun or a knive, send alerts
+    if (str.indexOf('knive') > -1 || str.indexOf('gun') > -1)
+    {
+        console.log('Detection from Python arrived to NodeJs server')
+    }
+  
       if (str.indexOf('person') > -1 && str.indexOf('bottle') > -1)
       {
         if (!(fs.existsSync("./public/incidents/"+getDateTime().substr(0, 10))))
