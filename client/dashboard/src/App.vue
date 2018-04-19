@@ -2,11 +2,7 @@
   <div :class="{'nav-open': $sidebar.showSidebar}" >
     <notifications></notifications>
     <router-view></router-view>
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e6a5d2323b1974fb5d9483b496e1770b0300702a
   </div>
 </template>
 

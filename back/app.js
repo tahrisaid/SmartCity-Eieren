@@ -43,11 +43,7 @@ app.use(session({
 
 }));
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> e6a5d2323b1974fb5d9483b496e1770b0300702a
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -81,13 +77,6 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-/*var PythonShell = require('python-shell');
- PythonShell.run('./api/object_detection_tutorial_webcam.py', function (err) {
- if (err) throw err;
- console.log('finished');
- });
-*/
-
 // error handler
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
@@ -102,9 +91,6 @@ var cors = require('cors');
 
 // use it before all route definitions
 app.use(cors({origin: '*'}));
-/*app.listen(3000, function () {
- console.log('Currently listening on port 3000!')
-})*/
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -121,7 +107,6 @@ var upload = multer({ storage: storage });
 app.post('/uploads', upload.single('image'), (req, res) => {
     return res.json('success');
 });
-
 
 /************** Alerts after detection (Mail exp) ************/
 var transporter = nodemailer.createTransport({
@@ -182,21 +167,6 @@ var opts = {
 var Webcam = NodeWebcam.create( opts );
 
 
-//Will automatically append location output type
-
-//NodeWebcam.capture( "./public/data/capture0.jpg", opts, function( err, data ) {});
-
-/*
-Webcam.list( function( list ) {
-
- //Use another device
-
- var anotherCam = NodeWebcam.create( { device: list[ 0 ] } );
-
-});
-*/
-
-//getTime
 
 function getDateTime() {
 
@@ -226,7 +196,7 @@ function getDateTime() {
 /**************** Reading socket from python ****************/
 server.listen(port1);
 server.on('connection', function(socket) {
-<<<<<<< HEAD
+
   liste=[];
   object={};
   liste.push(socket.remoteAddress);
@@ -236,38 +206,24 @@ server.on('connection', function(socket) {
   var isRunning = false;
   var streatTimeout;
 
-
-
   socket.on('data', function(data) {
-
-
 
     var str= data.toString();
     console.log(str);
-    /****** Add object *******/
-  /*str  = str.substring(0,str.lenght-1);
-  str  = str.substring(1,str.length);*/
-  
-   /*var ch = {'id':74, 'name':'mouse'}
-     var detectedObject = new DetectedObject(ch);
-      detectedObject.save(function(err, detectedObject) {
-        if (err) {
-          res.send(err);
-          console.log(
-            'Errer before add!!!!'
-          )
-        } else res.send(detectedObject);
-        console.log(
-          'Object added!!!!!')
-      });
-    */
     //If the detected objects are a gun or a knive, send alerts
     if (str.indexOf('knive') > -1 || str.indexOf('gun') > -1)
     {
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
         console.log('Detection from Python arrived to NodeJs server')
     }
   
-      if (str.indexOf('person') > -1 && str.indexOf('bottle') > -1)
+      else if (str.indexOf('person') > -1 && str.indexOf('bottle') > -1)
       {
         if (!(fs.existsSync("./public/incidents/"+getDateTime().substr(0, 10))))
          fs.mkdirSync('./public/incidents/'+getDateTime().substr(0, 10));
@@ -320,137 +276,13 @@ server.on('connection', function(socket) {
         var settings = {
           "image": base64Img.base64Sync('../object_detection/frame.jpg'),
           "gallery_name": "Arti"
-=======
-    liste=[];
-    object={};
-    liste.push(socket.remoteAddress);
-    //console.log(liste);
-    socket = new JsonSocket(socket);
-    var n;
-    var isRunning = false;
-    var streatTimeout;
 
-
-    socket.on('data', function(data) {
-        var str= data.toString();
-        console.log(str);
-        /****** Add object *******/
-        /*str = str.substring(0,str.lenght-1);
-        str = str.substring(1,str.length);*/
-
-        /*var ch = {'id':74, 'name':'mouse'}
-        var detectedObject = new DetectedObject(ch);
-        detectedObject.save(function(err, detectedObject) {
-        if (err) {
-        res.send(err);
-        console.log(
-        'Errer before add!!!!'
-        )
-        } else res.send(detectedObject);
-        console.log(
-        'Object added!!!!!')
-        });
-        */
-        //If the detected objects are a gun or a knive, send alerts
-        if (str.indexOf('knive') > -1 || str.indexOf('gun') > -1)
-        {
-            console.log('Detection from Python arrived to NodeJs server')
->>>>>>> e6a5d2323b1974fb5d9483b496e1770b0300702a
         }
         //io.emit(array[0],array)
-    });
+      }
 
-    socket.on('data', function(data) {
-        var str= data.toString();
-        console.log(str);
-        //If the detected objects are a gun or a knive, send alerts
-        if (str.indexOf('knive') > -1 || str.indexOf('gun') > -1)
-        {
-            transporter.sendMail(mailOptions, function(error, info){
-                if (error) {
-                    console.log(error);
-                } else {
-                    console.log('Email sent: ' + info.response);
-                }
-            });
-            console.log('Detection from Python arrived to NodeJs server')
-        }
-        if (str.indexOf('person') > -1 && str.indexOf('bottle') > -1)
-        {
-            if (!(fs.existsSync("./public/incidents/"+getDateTime().substr(0, 10))))
-                fs.mkdirSync('./public/incidents/'+getDateTime().substr(0, 10));
-
-
-            var min = parseInt(getDateTime().substr(14, 2),10);
-            min=min-1;
-
-            if ((fs.existsSync("./public/incidents/"+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 3)+min.toString())))
-            {
-                fs.createReadStream('../object_detection/frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 3)+min.toString()+'/'+getDateTime().substr(14, 5)+'.jpg'))
-                var settings = {
-                    "image": base64Img.base64Sync('../object_detection/frame.jpg'),
-                    "gallery_name": "Arti",
-                    "subject_id": getDateTime().substr(0, 14)+min.toString(),
-                    multiple_faces: true
-                }
-                client.enroll(settings)
-                    .then(function(result) {
-                        console.log(getDateTime().substr(0, 14)+min.toString())
-                    })
-                    .catch(function(err) {
-                        console.log(err)
-                    });
-            }
-            else
-            {
-                if (!(fs.existsSync("./public/incidents/"+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5))))
-                {
-                    fs.mkdirSync('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5));
-                    var settings = {
-                        "image": base64Img.base64Sync('../object_detection/frame.jpg'),
-                        "gallery_name": "Arti",
-                        "subject_id": getDateTime().substr(0, 16),
-                        multiple_faces: true
-                    }
-                    client.enroll(settings)
-                        .then(function(result) {
-                            console.log(JSON.stringify(result)+getDateTime().substr(0, 16))
-                        })
-                        .catch(function(err) {
-                            console.log(err)
-                        });
-                }
-                fs.createReadStream('../object_detection/frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5)+'/'+getDateTime().substr(14, 5)+'.jpg'))
-            }
-
-        }else if (str.indexOf('person') > -1 )
-        {
-            var settings = {
-                "image": base64Img.base64Sync('../object_detection/frame.jpg'),
-                "gallery_name": "Arti"
-            }
-            client.recognize(settings)
-            // result: {
-            // status: <http status code>,
-            // body: <data>
-            // }
-                .then(function(result) {
-                    if(JSON.stringify(result).indexOf("success") > -1)
-                    {
-                        console.log(JSON.stringify(result.body.images[0].candidates[0].subject_id))
-                    }
-                })
-                // err -> array: jsonschema validate errors
-                // or throw Error
-                .catch(function(err) {
-                    console.log("errr :"+err)
-                });
-
-
-        }
-
-        //io.emit(array[0],array)
-    });
 });
+});
+
 
 module.exports = app
