@@ -1,8 +1,12 @@
 <template>
-  <div :class="{'nav-open': $sidebar.showSidebar}" id="app">
+  <div :class="{'nav-open': $sidebar.showSidebar}" >
     <notifications></notifications>
     <router-view></router-view>
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e6a5d2323b1974fb5d9483b496e1770b0300702a
   </div>
 </template>
 
@@ -44,12 +48,5 @@
       transform: scale(1.2, 0.7);
     }
   }
-  #app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
+
 </style>
