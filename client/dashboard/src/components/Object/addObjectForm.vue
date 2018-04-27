@@ -12,18 +12,15 @@
                   v-model.trim="object.name"
                   required>
                </fg-input>
-            </div>
-            <div class="col-md-6">
-               <fg-input type="file"
-                  id="img"
-                  :state="state" 
-                  label="image"
-                  required>
-               </fg-input>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-md-12">
+               <!--<div class="col-md-6">
+                  <fg-input type="file"
+                     id="img"
+                     :state="state" 
+                      required
+                     label="image"
+                    >
+                  </fg-input>
+                  </div>-->
                <div class="form-group">
                   <label>Previously detected?</label>
                   <select class="form-control border-input" v-model="object.thread" required>
@@ -32,10 +29,6 @@
                      <option value="Not detected">Not detected</option>
                   </select>
                </div>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-md-12">
                <div class="form-group">
                   <label>Degree</label>
                   <select class="form-control border-input" v-model="object.degree" required>
@@ -45,10 +38,6 @@
                      <option value="Might be a danger">Might be a danger</option>
                   </select>
                </div>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-md-12">
                <div class="form-group">
                   <label>Description</label>
                   <textarea rows="5" class="form-control border-input"
@@ -59,6 +48,24 @@
                      required>
                   </textarea>
                </div>
+            </div>
+            <div class="col-md-6">
+               <picture-input 
+                  ref="pictureInput" 
+                  id="img"
+                  :state="state" 
+                  required
+                  width="800" 
+                  height="500" 
+                  accept="image/jpeg,image/png" 
+                  size="10" 
+                  buttonClass="btn"
+                  :customStrings="{
+                  upload: '<h1>Bummer!</h1>',
+                  drag: 'Drag your image here'
+                  }">
+               </picture-input>
+               <br><br>
             </div>
          </div>
          <div class="text-center">
@@ -73,11 +80,13 @@
 <script>
    import Card from 'src/components/UIComponents/Cards/Card.vue'
    import axios from 'axios'
+   import PictureInput from 'vue-picture-input'
    export default {
      
      name: 'CreteObject',
      components: {
-       Card
+       Card,
+       PictureInput
      },
      data () {
        return {

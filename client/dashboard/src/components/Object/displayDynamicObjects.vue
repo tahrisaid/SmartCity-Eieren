@@ -1,16 +1,30 @@
 <template>
 <div class="table">
-   <md-table>
+   <md-table class="table" border="2">
       <md-table-header>
          <md-table-row>
-            <md-table-head>id</md-table-head>
-            <md-table-head>name</md-table-head>
+            <md-table-head>Title</md-table-head>
+
+            <md-table-head>Company</md-table-head>
+
+            <md-table-head>Ticker</md-table-head>
+
+            <md-table-head>Price</md-table-head>
+
+            <md-table-head>Volume</md-table-head>
          </md-table-row>
       </md-table-header>
       <md-table-body>
-         <md-table-row v-for="(data, index) in tableData" :key="data.id">
-            <md-table-cell>{{data.id}}</md-table-cell>
-            <md-table-cell>{{data.name}}</md-table-cell>
+          <md-table-row v-for="(data, index) in tableData" :key="data.title">
+             <md-table-cell>{{data.title}}</md-table-cell>
+
+            <md-table-cell>{{data.company}}</md-table-cell>
+
+            <md-table-cell>{{data.ticker}}</md-table-cell>
+
+            <md-table-cell>{{data.last}}</md-table-cell>
+
+            <md-table-cell>{{data.volume}}</md-table-cell>>
          </md-table-row>
       </md-table-body>
    </md-table>
@@ -19,25 +33,25 @@
 </template>
 <script>
  
- 
 import { StreamDataIo } from 'streamdataio-js-sdk'
 import * as jsonpatch from 'fast-json-patch'
 
 export default {
    name: 'stockmarket',
-
    data() {
-
        return {
            streamData: null,
            tableData: []
        }
+   }
+   ,mounted:function(){
+        
    },
    created: function () {
        this.streamData =
            StreamDataIo.createEventSource(
                //str,
-               str,
+               'http://stockmarket.streamdata.io/v2/prices',
                'M2UwMGUxMWMtMTE4Ny00MGZhLTkxMjItMzAzMzBhOWIxZjk3',
                []);
        this.streamData.onData(data => {
