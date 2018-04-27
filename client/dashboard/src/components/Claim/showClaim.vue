@@ -15,7 +15,6 @@
           place: {{claim.place}}<br>
           lattitude: {{claim.lat}}<br>
           longitude: {{claim.long}}<br>
-
         </template>
         <hr class="my-4">
         <b-btn variant="danger" @click.stop="deleteClaim(claim._id),notifyVue('bottom', 'right')">Delete</b-btn>

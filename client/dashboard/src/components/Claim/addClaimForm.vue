@@ -70,7 +70,6 @@
 
           <button @click="addMarker">Add</button>
         </label>
-
         <br/>
 
       </div>

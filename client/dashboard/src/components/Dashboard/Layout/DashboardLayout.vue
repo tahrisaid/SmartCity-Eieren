@@ -7,6 +7,10 @@
         <i class="nc-icon nc-chart-pie-35"></i>
         <p>Dashboard</p>
       </sidebar-link>
+      <sidebar-link to="/admin/Eiren">
+        <i class="nc-icon nc-satisfied"></i>
+        <p>Eiren's bot</p>
+      </sidebar-link>
            <sidebar-link to="/admin/EirenBrain">
         <i class="nc-icon nc-chart-pie-35"></i>
         <p>Eiren's Brain</p>

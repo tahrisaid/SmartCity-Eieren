@@ -27,6 +27,7 @@ import addArea from 'src/components/Area/addArea.vue'
 import deleteArea from 'src/components/Area/deleteArea.vue'
 import editArea from 'src/components/Area/editArea.vue'
 import displayDynamicObjects from 'src/components/Object/displayDynamicObjects.vue'
+import Eiren from 'src/components/Claim/Eiren.vue'
 
 const routes = [
   {
@@ -53,6 +54,11 @@ const routes = [
         path: 'overview',
         name: 'Overview',
         component: Overview
+      },
+      {
+        path: 'Eiren',
+        name: 'Eiren',
+        component: Eiren
       },
       {
         path: 'user',
