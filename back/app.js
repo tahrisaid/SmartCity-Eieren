@@ -38,6 +38,7 @@ var server = net.createServer();
 
 /*********Requirement for mail *************/
 var nodemailer = require('nodemailer');
+
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -97,6 +98,12 @@ const nexmo1 = new Nexmo({
 
 
     
+var fs = require('fs');
+var http = require('http');
+var Kairos = require('kairos-api');
+var client = new Kairos('6863aca2', '6156a8b3d4092deddfcb69664328fd24');
+var base64Img = require('base64-img');
+var request = require('request');
 
 var app = express();
 
@@ -319,7 +326,8 @@ server.on('connection', function(socket) {
               }
               client.enroll(settings)
                 .then(function(result) {
-                  console.log(getDateTime().substr(0, 14)+min.toString())
+                  console.log("enroll_min: "+getDateTime().substr(0, 14)+min.toString())
+
                  })
                 .catch(function(err) { 
                     console.log(err)
@@ -338,23 +346,57 @@ server.on('connection', function(socket) {
               }
               client.enroll(settings)
                 .then(function(result) {
-                  console.log(JSON.stringify(result)+getDateTime().substr(0, 16))
+                  console.log("enroll: "+JSON.stringify(result)+getDateTime().substr(0, 16))
+                  var myJSONObject =     {
+                    "gallery": getDateTime().substr(0, 16),
+                    "confidence": result.body.images[0].transaction.confidence,
+                    "age":result.body.images[0].attributes.age,
+                    "glasses":result.body.images[0].attributes.glasses,
+                    "white":result.body.images[0].attributes.white,
+                    "black":result.body.images[0].attributes.black,
+                    "asian":result.body.images[0].attributes.asian,
+                    "hispanic":result.body.images[0].attributes.hispanic,
+                    "other":result.body.images[0].attributes.other,
+                    "gender":result.body.images[0].attributes.gender.type
+                    };
+                    request({
+                        url: "http://localhost:3000/criminal/",
+                        method: "POST",
+                        json: true,
+                        body: myJSONObject
+                    }, function (error, response, body){
+                        console.log("response");
+                    });
+                
                  })
                 .catch(function(err) { 
                     console.log(err)
                  });
-            }  
-            fs.createReadStream('../object_detection/frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5)+'/'+getDateTime().substr(14, 5)+'.jpg'))
-          }
+            }
+           fs.createReadStream('../object_detection/frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+getDateTime().substr(0, 10)+'/'+getDateTime().substr(11, 5)+'/'+getDateTime().substr(14, 5)+'.jpg'))   
+           }
 
       }else if (str.indexOf('person') > -1 )
       {
+        
         var settings = {
-          "image": base64Img.base64Sync('../object_detection/frame.jpg'),
-          "gallery_name": "Arti"
-
-        }
-        //io.emit(array[0],array)
+            "image": base64Img.base64Sync('../object_detection/frame.jpg'),
+            "gallery_name": "Arti"
+          }
+          client.recognize(settings)
+            .then(function(result) {
+              if(JSON.stringify(result).indexOf("success") > -1)
+              {
+                if (!(fs.existsSync("./public/incidents/"+result.body.images[0].candidates[0].subject_id.substr(0, 10)+'/'+result.body.images[0].candidates[0].subject_id.substr(11, 5)+'/recognized')))  
+                    fs.mkdirSync('./public/incidents/'+result.body.images[0].candidates[0].subject_id.substr(0, 10)+'/'+result.body.images[0].candidates[0].subject_id.substr(11, 5)+'/recognized')
+                fs.createReadStream('../object_detection/frame.jpg').pipe(fs.createWriteStream('./public/incidents/'+result.body.images[0].candidates[0].subject_id.substr(0, 10)+'/'+result.body.images[0].candidates[0].subject_id.substr(11, 5)+'/recognized/'+getDateTime().substr(17, 2)+'.jpg'))     
+                console.log("!!recognized!! :"+JSON.stringify(result.body.images[0].candidates[0].subject_id))
+              }
+             })
+            .catch(function(err) { 
+                console.log("errr :"+err)
+             });
+    
       }
 
 });

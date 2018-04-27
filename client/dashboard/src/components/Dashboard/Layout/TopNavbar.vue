@@ -9,7 +9,8 @@
              <b-form>
             
                   <router-link to="/signIn"  @click.native="logOut">
-     Log Out
+     <a data-v-65414849="" href="#" class="dropdown-item text-danger"><i data-v-65414849="" class="nc-icon nc-button-power"></i> Log out
+    </a>
 </router-link>
                   </b-form>
           </li>

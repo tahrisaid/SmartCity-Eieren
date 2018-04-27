@@ -27,7 +27,9 @@ import addArea from 'src/components/Area/addArea.vue'
 import deleteArea from 'src/components/Area/deleteArea.vue'
 import editArea from 'src/components/Area/editArea.vue'
 import displayDynamicObjects from 'src/components/Object/displayDynamicObjects.vue'
-
+import Eiren from 'src/components/Claim/Eiren.vue'
+import Crimes from 'src/components/Crimes/crimes.vue'
+import crimeInfo from 'src/components/Crimes/crimeInfo.vue'
 const routes = [
   {
     path: '/',
@@ -53,6 +55,11 @@ const routes = [
         path: 'overview',
         name: 'Overview',
         component: Overview
+      },
+      {
+        path: 'Eiren',
+        name: 'Eiren',
+        component: Eiren
       },
       {
         path: 'user',
@@ -158,6 +165,16 @@ const routes = [
         path: 'displayDynamicObjects',
         name: 'displayDynamicObjects',
         component: displayDynamicObjects
+      },
+      {
+        path: 'crimes',
+        name: 'crimes',
+        component: Crimes
+      },
+      {
+        path: 'crime-info/:id',
+        name: 'crime-info',
+        component: crimeInfo
       }
 
     ]
