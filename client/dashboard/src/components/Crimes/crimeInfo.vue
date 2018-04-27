@@ -1,28 +1,38 @@
 <template>
+
 <div class="content">
     <div class="container-fluid">
       <div class="row">
-<div class="col-md-12">
+                <div class="col-md-4">
+          <chart-card :chart-data="pieChart.data" chart-type="Pie">
+            <template slot="header">
+              <h4 class="card-title">Criminal Infos</h4>
+              <p class="card-category">Criminal skin color predictions</p>
+            </template>
+            <template slot="footer">
+              <div class="legend">
+                Age {{crime.age}}<br>
+                Gender: {{crime.gender}}<br>
+                Glasses: {{crime.glasses}}<br>
+              </div>
+              <hr>
+              <div class="stats">
+                <i class="fa fa-clock-o"></i>{{crime.gallery}}
+              </div>
+            </template>
+          </chart-card>
+        </div>
+<div class="col-md-8">
 <card>
   <b-row>
-    <b-col cols="12">
+    <b-col cols="8">
       <h4>
-        Crime informations
+        Crime captures
       </h4>
       <b-jumbotron>
         <template slot="header">
-          {{crime.gallery}}
         </template>
         <template slot="lead">
-          Criminal Age: {{crime.age}}<br>
-          Gender: {{crime.gender}}<br>
-          Glasses: {{crime.glasses}}<br>
-          White: {{crime.white}}<br>
-          Black: {{crime.black}}<br>
-          Asian: {{crime.asian}}<br>
-          Hispanic: {{crime.hispanic}}<br>
-          Other: {{crime.other}}<br>
-          Confidence: {{crime.confidence}}<br>
           Frames: <br>
                 <img v-img:my-group :src="('http://localhost:8080/incidents/'+crime.gallery.substr(0, 10)+'/'+crime.gallery.substr(11, 5)+'/'+crime.gallery.substr(14, 2)+'_00.jpg')" >
                 <img v-img:my-group :src="('http://localhost:8080/incidents/'+crime.gallery.substr(0, 10)+'/'+crime.gallery.substr(11, 5)+'/'+crime.gallery.substr(14, 2)+'_01.jpg')" >
@@ -162,7 +172,7 @@
 </template>
 
 <script>
-
+import ChartCard from 'src/components/UIComponents/Cards/ChartCard.vue'
 import axios from 'axios'
 import Card from 'src/components/UIComponents/Cards/Card.vue'
 import Vue from 'vue';
@@ -176,10 +186,19 @@ export default {
     }},
   name: 'crimeInfo',
   components: {
+    ChartCard,
     Card
   },
   data () {
       return {
+        editTooltip: 'Edit Task',
+        deleteTooltip: 'Remove',
+        pieChart: {
+          data: {
+            labels: ['White','Other', 'Black', 'Asian','Hispanic','Other'],
+            series: [35, 5, 20, 30, 10]
+          }
+        },
         crime: [],
         errors: []
   }},
