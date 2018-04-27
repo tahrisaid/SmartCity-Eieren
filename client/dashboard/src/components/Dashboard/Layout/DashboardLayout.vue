@@ -35,6 +35,10 @@
         <i class="nc-icon nc-globe-2"></i>
         <p>Areas</p>
       </sidebar-link>
+      <sidebar-link to="/admin/crimes">
+        <i class="nc-icon nc-tv-2"></i>
+        <p>Crimes</p>
+      </sidebar-link>
     </side-bar>
     <div class="main-panel">
       <top-navbar></top-navbar>

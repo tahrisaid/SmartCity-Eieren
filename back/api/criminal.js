@@ -35,6 +35,12 @@ router.get('/', function (req, res, next) {
 
     });
 });
+/*get by gallery*/
+
+router.get('/bygallery/:id', function (req, res) {
+    var id = req.params.id;
+    Object.findOne({gallery: id}, function(err,obj) { console.log(obj); });
+});
 /*get by id*/
 router.get('/:id', function (req, res) {
     var id = req.params.id;
