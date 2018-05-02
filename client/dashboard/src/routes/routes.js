@@ -54,7 +54,7 @@ const routes = [
       {
         path: 'overview',
         name: 'Overview',
-        component: Overview
+        component: EirenBrain
       },
       {
         path: 'Eiren',

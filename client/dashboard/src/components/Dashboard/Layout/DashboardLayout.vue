@@ -27,10 +27,10 @@
         <i class="nc-icon nc-notes"></i>
         <p>Objects</p>
       </sidebar-link>
-      <sidebar-link to="/admin/user">
+      <!--<sidebar-link to="/admin/user">
         <i class="nc-icon nc-circle-09"></i>
         <p>User Profile</p>
-      </sidebar-link>
+      </sidebar-link>-->
       <sidebar-link to="/admin/manage-areas">
         <i class="nc-icon nc-globe-2"></i>
         <p>Areas</p>

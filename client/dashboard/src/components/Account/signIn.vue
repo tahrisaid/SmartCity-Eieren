@@ -54,7 +54,9 @@
    body {
    height: 100%;
    font-family: 'Roboto', sans-serif;
-     background:url("../../../static/img/smartCity.jpg")no-repeat;
+    
+    color:white;
+     background:url("https://www.walldevil.com/wallpapers/a85/cityscapes-artwork-cities-art-fantasy-wallpapers-futuristic-wallpaper.jpg") no-repeat;
 
    }
    .container {
