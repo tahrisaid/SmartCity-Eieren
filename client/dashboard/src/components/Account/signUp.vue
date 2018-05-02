@@ -222,21 +222,40 @@ form .form-group:last-child {
     data() {
       return {
         account: {},
+        type: ['', 'info', 'success', 'warning', 'danger'],
+         notifications: {
+           topCenter: false
+         }
       }
     },
      methods: {
       onSubmit (evt) {
         evt.preventDefault()
+        var n = this.account.password.localeCompare(this.account.passwordConf);
+
+        if ((this.account.accountname.length) < 8)
+        {
+          alert("Username must contain 8 caracters at least");
+        }
+        else if (n != 0)
+          {
+            alert("Passwords do not match! Please try again.");
+          }
+        else 
+          {
         axios.post(`http://localhost:3000/account`, this.account)
         .then(response => {
+           
           this.$router.push({
             name: 'signIn',
             params: { id: response.data._id }
-          })
+          });
+          
         })
         .catch(e => {
           this.errors.push(e)
         })
+      }
       }
       }
   }
