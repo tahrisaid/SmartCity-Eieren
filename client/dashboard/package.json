@@ -30,6 +30,7 @@
     "vue-notifyjs": "^0.2.0",
     "vue-picture-input": "^2.1.5",
     "vue-router": "^3.0.1",
+    "vue-threejs": "0.0.4",
     "vue2-google-maps": "^0.8.4",
     "vuejs-datetimepicker": "^1.1.3"
   },

@@ -36,7 +36,7 @@ router.get('/', function(req, res, next) {
 /*get allllll*/
 router.get('/all',function (req,res) {
     
-    User.find().limit(100).skip(0).exec(function (err,user) {
+    User.find().limit(1000).skip(0).exec(function (err,user) {
         if(err) {
             res.send(err)
 
@@ -46,6 +46,7 @@ router.get('/all',function (req,res) {
 
         }
         else {
+          
             res.json(user);
 
         }
@@ -191,6 +192,676 @@ router.get('/nbrpredict',function (req,res) {
         }
     });
 });
+
+/*********************************************** */
+router.get('/nbraussault',function (req,res) {
+    
+    User.find({ $where : "0.05<this.ASSAULT" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** */
+/*********************************************** */
+router.get('/nbrbribery',function (req,res) {
+    
+    User.find({ $where : "0.05<this.BRIBERY" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrburglary',function (req,res) {
+    
+    User.find({ $where : "0.05<this.BURGLARY" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrdrunkness',function (req,res) {
+    
+    User.find({ $where : "0.05<this.DRUNKENNESS" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbremb',function (req,res) {
+    
+    User.find({ $where : "0.05<this.EMBEZZLEMENT" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrextortion',function (req,res) {
+    
+    User.find({ $where : "0.05<this.EXTORTION" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrfraud',function (req,res) {
+    
+    User.find({ $where : "0.05<this.FRAUD" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrgambling',function (req,res) {
+    
+    User.find({ $where : "0.05<this.GAMBLING" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrKIDNAPPING',function (req,res) {
+    
+    User.find({ $where : "0.05<this.KIDNAPPING" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrLOITERING',function (req,res) {
+    
+    User.find({ $where : "0.05<this.LOITERING" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrPROSTITUTION',function (req,res) {
+    
+    User.find({ $where : "0.05<this.PROSTITUTION" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrROBBERY',function (req,res) {
+    
+    User.find({ $where : "0.05<this.ROBBERY" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrRUNAWAY',function (req,res) {
+    
+    User.find({ $where : "0.05<this.RUNAWAY" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrSUICIDE',function (req,res) {
+    
+    User.find({ $where : "0.05<this.SUICIDE" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrTREA',function (req,res) {
+    
+    User.find({ $where : "0.05<this.TREA" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+
+router.get('/nbrTRESPASS',function (req,res) {
+    
+    User.find({ $where : "0.05<this.TRESPASS" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrVANDALISM',function (req,res) {
+    
+    User.find({ $where : "0.05<this.VANDALISM" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*********************************************** */
+router.get('/nbrWARRANTS',function (req,res) {
+    
+    User.find({ $where : "0.05<this.WARRANTS" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*********************************************** */
+router.get('/nbrBADCHECKS',function (req,res) {
+    
+    User.find({ $where : "0.05<this.BAD_CHECKS" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*********************************************** */
+router.get('/nbrDISORDERLYCONDUCT',function (req,res) {
+    
+    User.find({ $where : "0.05<this.DISORDERLY_CONDUCT" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*********************************************** */
+router.get('/nbrDRIVINGUNDERTHEINFLUENCE',function (req,res) {
+    
+    User.find({ $where : "0.05<this.DRIVING_UNDER_THE_INFLUENCE" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*********************************************** */
+router.get('/nbrDRUGNARCOTIC',function (req,res) {
+    
+    User.find({ $where : "0.05<this.DRUG_NARCOTIC" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*********************************************** */
+router.get('/nbrFORGERYCOUNTERFEITING',function (req,res) {
+    
+    User.find({ $where : "0.05<this.FORGERY_COUNTERFEITING" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*********************************************** */
+router.get('/nbrLARCENYTHEFT',function (req,res) {
+    
+    User.find({ $where : "0.0<this.LARCENY_THEFT" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*********************************************** */
+router.get('/nbrLIQUORLAWS',function (req,res) {
+    
+    User.find({ $where : "0.05<this.LIQUOR_LAWS" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** */
+/*************************** *//*************************** *//*********************************************** */
+router.get('/nbrMISSINGPERSON',function (req,res) {
+    
+    User.find({ $where : "0.05<this.MISSING_PERSON" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*************************** *//*********************************************** */
+router.get('/nbrNONCRIMINAL',function (req,res) {
+    
+    User.find({ $where : "0.05<this.NON_CRIMINAL" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*************************** *//*********************************************** */
+router.get('/nbrOTHEROFFENSES',function (req,res) {
+    
+    User.find({ $where : "0.05<this.OTHER_OFFENSES" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*************************** *//*********************************************** */
+router.get('/nbrRECOVEREVEHICLE',function (req,res) {
+    
+    User.find({ $where : "0.05<this.RECOVERE_VEHICLE" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*************************** *//*********************************************** */
+router.get('/nbrSECONDARYCODES',function (req,res) {
+    
+    User.find({ $where : "0.05<this.SECONDARY_CODES" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*************************** *//*********************************************** */
+router.get('/nbrSEXOFFENSESFORCIBLE',function (req,res) {
+    
+    User.find({ $where : "0.05<this.SEX_OFFENSES_FORCIBLE" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*************************** *//*********************************************** */
+router.get('/nbrSEXOFFENSESNONFORCIBLE',function (req,res) {
+    
+    User.find({ $where : "0.05<this.SEX_OFFENSES_NON_FORCIBLE" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*************************** *//*********************************************** */
+router.get('/nbrSTOLENPROPERTY',function (req,res) {
+    
+    User.find({ $where : "0.05<this.STOLEN_PROPERTY" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*************************** *//*********************************************** */
+router.get('/nbrSUSPICIOUSOCC',function (req,res) {
+    
+    User.find({ $where : "0.05<this.SUSPICIOUS_OCC" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*************************** *//*********************************************** */
+router.get('/nbrVEHICLETHEFT',function (req,res) {
+    
+    User.find({ $where : "0.05<this.VEHICLE_THEFT" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*************************** *//*********************************************** */
+router.get('/nbrWEAPONLAWS',function (req,res) {
+    
+    User.find({ $where : "0.05<this.WEAPON_LAWS" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+/*************************** *//*************************** *//*************************** *//*********************************************** */
+router.get('/nbrPORNOGRAPHYOBSCENEMAT',function (req,res) {
+    
+    User.find({ $where : "0.05<this.PORNOGRAPHY_OBSCENE_MAT" }).count().exec(function (err,user) {
+        if(err) {
+            res.send(err)
+
+        }
+        if(!user) {
+            res.status(404).send();
+
+        }
+        else {
+            res.json(user);
+
+        }
+    });
+});
+
 /*get by id*/
 router.get('/:id',function (req,res) {
     var id=req.params.id;
@@ -236,12 +907,5 @@ router.put('/:id', function(req, res){
         });
 });
 /*analyse and clean*/
-router.get('/analyse', function(req, res) {
-        console.log("bonjour");
-           
-            
-        
 
-    
-});
 module.exports = router;

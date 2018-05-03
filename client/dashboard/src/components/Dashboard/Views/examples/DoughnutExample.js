@@ -1,21 +1,111 @@
 import { Doughnut } from '../BaseCharts'
+import axios from 'axios'
+import Vue from 'vue'
+
 
 export default {
+
   extends: Doughnut,
+ 
+  data: function () {
+    return {
+      errors:[],
+
+      nbraussault:64045,
+      nbrbribery:20345,
+      nbrburglary:15234,
+      nbrdrunkness:80345,
+      nbremb:0,
+      nbrextortion:0,
+      nbrfraud:0,
+      nbrgambling:0,
+      nbrKIDNAPPING:0,
+      nbrLOITERING:0,
+      nbrPROSTITUTION:0,
+      nbrROBBERY:0,
+      nbrRUNAWAY:0,
+      nbrSUICIDE:0,
+      nbrTREA:0,
+      nbrTRESPASS:0,
+      nbrVANDALISM:0,
+      nbrWARRANTS:0,
+      nbrBADCHECKS:0,
+      nbrDISORDERLYCONDUCT:0,
+      nbrDRIVINGUNDERTHEINFLUENCE:0,
+      nbrDRUGNARCOTIC:0,
+      nbrFORGERYCOUNTERFEITING:0,
+      nbrFORGERYCOUNTERFEITING:0,
+      nbrLARCENYTHEFT:0,
+      nbrbribery:0,
+    }
+  },
   mounted () {
     this.renderChart({
-      labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+      labels: ['aussault', 'bribery', 'burglary', 'drunkness'],
       datasets: [
         {
           backgroundColor: [
-            '#41B883',
-            '#E46651',
-            '#00D8FF',
-            '#DD1B16'
+            'black',
+            'white',
+            'yellow',
+            'red'
           ],
-          data: [40, 20, 80, 10]
+          data: [this.nbraussault, this.nbrbribery, this.nbrburglary,this.nbrdrunkness]
         }
       ]
     }, {responsive: true, maintainAspectRatio: false})
-  }
+  },
+  created: function () {   
+   //alert(this.nbraussault) ;
+           axios.get('http://localhost:3000/predictModel/nbraussault')
+       .then(response => { this.nbraussault=response.data}).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbrbribery')
+       .then(response => { this.nbrbribery = response.data }).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbrburglary')
+       .then(response => { this.nbrburglary = response.data }).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbrdrunkness')
+       .then(response => { this.nbrdrunkness = response.data }).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbremb')
+       .then(response => { this.nbremb = response.data }).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbrextortion')
+       .then(response => { this.nbrextortion = response.data }).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbrfraud')
+       .then(response => { this.nbrfraud = response.data }).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbrgambling')
+       .then(response => { this.nbrgambling = response.data }).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbrKIDNAPPING')
+       .then(response => { this.nbrKIDNAPPING = response.data }).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbrLOITERING')
+       .then(response => { this.nbrLOITERING = response.data }).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbrPROSTITUTION')
+       .then(response => { this.nbrPROSTITUTION = response.data }).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbrROBBERY')
+       .then(response => { this.nbrROBBERY = response.data }).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbrRUNAWAY')
+       .then(response => { this.nbrRUNAWAY = response.data }).catch(e => { this.errors.push(e) }) ,
+       axios.get('http://localhost:3000/predictModel/nbrSUICIDE')
+       .then(response => { this.nbrSUICIDE = response.data }).catch(e => { this.errors.push(e) }) ,
+             axios.get('http://localhost:3000/predictModel/nbrTREA')
+       .then(response => { this.nbrTREA = response.data }).catch(e => { this.errors.push(e) }) ,
+            axios.get('http://localhost:3000/predictModel/nbrTRESPASS')
+       .then(response => { this.nbrTRESPASS = response.data }).catch(e => { this.errors.push(e) }) ,
+            axios.get('http://localhost:3000/predictModel/nbrVANDALISM')
+       .then(response => { this.nbrVANDALISM = response.data }).catch(e => { this.errors.push(e) }) ,
+            axios.get('http://localhost:3000/predictModel/nbrWARRANTS')
+       .then(response => { this.nbrWARRANTS = response.data }).catch(e => { this.errors.push(e) }) ,
+            axios.get('http://localhost:3000/predictModel/nbrBADCHECKS')
+       .then(response => { this.nbrBADCHECKS = response.data }).catch(e => { this.errors.push(e) }) ,
+            axios.get('http://localhost:3000/predictModel/nbrDISORDERLYCONDUCT')
+       .then(response => { this.nbrDISORDERLYCONDUCT = response.data }).catch(e => { this.errors.push(e) }) ,
+            axios.get('http://localhost:3000/predictModel/nbrDRIVINGUNDERTHEINFLUENCE')
+       .then(response => { this.nbrDRIVINGUNDERTHEINFLUENCE = response.data }).catch(e => { this.errors.push(e) }) ,
+            axios.get('http://localhost:3000/predictModel/nbrDRUGNARCOTIC')
+       .then(response => { this.nbrDRUGNARCOTIC = response.data }).catch(e => { this.errors.push(e) }) ,
+            axios.get('http://localhost:3000/predictModel/nbrFORGERYCOUNTERFEITING')
+       .then(response => { this.nbrFORGERYCOUNTERFEITING = response.data }).catch(e => { this.errors.push(e) }) ,
+            axios.get('http://localhost:3000/predictModel/nbrLARCENYTHEFT')
+       .then(response => { this.nbrLARCENYTHEFT = response.data }).catch(e => { this.errors.push(e) }) ,
+            axios.get('http://localhost:3000/predictModel/nbrbribery')
+       .then(response => { this.nbrbribery = response.data }).catch(e => { this.errors.push(e) })
+       }
 }

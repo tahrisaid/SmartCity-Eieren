@@ -14,7 +14,7 @@
 
  
 Vue.use(VueGoogleHeatmap, {
-  apiKey: 'AIzaSyDMc-V1coe0x9lYgPvFTa-JCX6smDAVfyU'
+  apiKey: 'AIzaSyDyLpThV6bpKtKwxFEssTctRryoHsVOTR0'
 });
 
   export default {
@@ -38,9 +38,31 @@ Vue.use(VueGoogleHeatmap, {
       {lat: 37.801024, lng:-122.434889},
       {lat: 37.800955, lng:-122.435392},
       {lat: 37.800886, lng:-122.435959},
-        {lat: 37.786117, lng:-122.419087676747},
-        {lat: 37.786117, lng:-122.419087676747},
-                {lat: 37.800886, lng:-122.425891675136}],
+      {lat: 37.786117, lng:-122.419087676747},
+      {lat: 37.786117, lng:-122.419087676747},
+      {lat: 37.800886, lng:-122.425891675136}
+      ,
+      {lat: 37.8065165, lng:-122.42589151651},
+      {lat: 37.80051641, lng:-122.425895151},
+      {lat: 37.80651, lng:-122.425891654164},
+      {lat: 37.8051, lng:-122.42586451651}
+      ,
+      {lat: 37.8065165, lng:-122.42589151651},
+      {lat: 37.80051641, lng:-122.425895651},
+      {lat: 37.80651, lng:-122.425891654164},
+      {lat: 37.8051, lng:-122.42586451164},
+      {lat: 37.8065165, lng:-122.42589151651},
+      {lat: 37.80051641, lng:-122.42589551651},
+      {lat: 37.80651, lng:-122.425891654164},
+      {lat: 37.8051, lng:-122.42581654164},
+      {lat: 37.8065165, lng:-122.42589151651},
+      {lat: 37.80051641, lng:-122.4258989151651},
+      {lat: 37.80651, lng:-122.425891654164},
+      {lat: 37.8051, lng:-122.42586454164},
+      {lat: 37.8065165, lng:-122.42589151651},
+      {lat: 37.80051651, lng:-122.425895151},
+      {lat: 37.80651, lng:-122.425891654164},
+      {lat: 37.8051, lng:-122.42586451651}],
          
           points: [
                     
@@ -103,9 +125,6 @@ Vue.use(VueGoogleHeatmap, {
                           for( var i = 0; i < response.data.length; i++)
                         { 
                           this.fields.push({lat:response.data[i].Y,lng:response.data[i].X});
-                          console.log(this.fields[i].lat);
-                          console.log(this.fields[i].lng);
-
                          
              
                           //console.log( this.fields[i].lat);
@@ -117,6 +136,7 @@ Vue.use(VueGoogleHeatmap, {
 
 }).catch(e => { this.errors.push(e) }) 
       },
+      
     mounted () {
       this.$nextTick(() => {
         this.$refs.mymap.$mapCreated.then(() => {
@@ -125,7 +145,7 @@ Vue.use(VueGoogleHeatmap, {
           .then(response => {
             let latlon = new google.maps.MVCArray();
             response.data.result.forEach(function(coord) {
-                latlon.push(new google.maps.LatLng(this.fields.lat, this.fields.lng));
+                latlon.push(new google.maps.LatLng(coord.lat, coord.lng));
             });
             let x = new google.maps.visualization.HeatmapLayer({
               data: latlon,

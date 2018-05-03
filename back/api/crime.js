@@ -4,7 +4,7 @@ var router = express.Router();
 /*get allllll*/
 router.get('/all',function (req,res) {
     
-    User.find().limit(300).skip(0).exec(function (err,user) {
+    User.find().limit(10000).skip(0).exec(function (err,user) {
         if(err) {
             res.send(err)
 

@@ -1,4 +1,4 @@
-<template>
+<!--<template>
 
   <card>
     <h4 slot="header" class="card-title">Add Claim</h4>
@@ -71,7 +71,7 @@
 
   Vue.use(VueGoogleMaps, {
     load: {
-      key: 'AIzaSyDKzdqvMBg_X79-RNMpBUeRe-b4AGiRpH8',
+      key: '',
       v: 'OPTIONAL VERSION NUMBER',
       // libraries: 'places', //// If you need to use place input
     }

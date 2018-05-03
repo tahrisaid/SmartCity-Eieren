@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <card>
     <h4 slot="header" class="card-title">Add Area</h4>
      <b-form @submit="onSubmit">
@@ -51,12 +51,7 @@
       </div>
       <div class="clearfix"></div>
     </b-form>
-      <gmap-map
-  :center="{lat:10, lng:10}"
-  :zoom="7"
-  map-type-id="terrain"
-  style="width: 500px; height: 300px"
-></gmap-map>
+   
   </card>
 </template>
 <script>
@@ -67,7 +62,7 @@
   import * as VueGoogleMaps from 'vue2-google-maps'
   Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyAdn8zt_z1fKbW_QaGaTWmhuo5KUGZfNVw',
+    key: '',
     libraries: 'places', // This is required if you use the Autocomplete plugin
     // OR: libraries: 'places,drawing'
     // OR: libraries: 'places,drawing,visualization'
