@@ -46,6 +46,15 @@
         </div>
 
         <div class="form-group">
+         <select  v-model.trim="account.role" required :state="state"
+                    placeholder="Role">
+                     <option value="" selected disabled>Select the role</option>
+                     <option value="Admin">Admin</option>
+                     <option value="Citizen">Citizen</option>
+                  </select>
+        </div>
+
+        <div class="form-group">
           <button :class="{active: disable_btn}" type="submit"  @click.stop>
           Sign Up
         </button>

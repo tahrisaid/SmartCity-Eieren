@@ -175,6 +175,7 @@
    opacity: 0;
    transform: translateX(-40px);
    }
+   
 </style>
 <script>
    import axios from 'axios'

@@ -20,6 +20,10 @@ var AccountSchema = new mongoose.Schema({
   passwordConf: {
     type: String,
     required: true,
+  },
+  role :{
+   type:String,
+   required:true, 
   }
 });
 AccountSchema.pre('save', function (next) {
