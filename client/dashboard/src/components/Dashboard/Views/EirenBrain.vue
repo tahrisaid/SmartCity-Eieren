@@ -135,7 +135,7 @@
   import LTable from 'src/components/UIComponents/Table.vue'
   import Checkbox from 'src/components/UIComponents/Inputs/Checkbox.vue'
   import { Bar } from 'src/components/DashBoard/views/BaseCharts'
-  import { reactiveData } from 'src/components/DashBoard/views/mixins'
+  import { reactiveData } from 'src/components/Dashboard/views/mixins'
   import BarExample from 'src/components/DashBoard/views/examples/BarExample'
   import LineExample from 'src/components/DashBoard/views/examples/LineExample'
   import DoughnutExample from 'src/components/DashBoard/views/examples/DoughnutExample'
