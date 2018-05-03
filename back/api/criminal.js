@@ -35,6 +35,12 @@ router.get('/', function (req, res, next) {
 
     });
 });
+/*get by gallery*/
+
+router.get('/bygallery/:id', function (req, res) {
+    var id = req.params.id;
+    Object.findOne({gallery: id}, function(err,obj) { console.log(obj); });
+});
 /*get by id*/
 router.get('/:id', function (req, res) {
     var id = req.params.id;
@@ -68,23 +74,14 @@ router.delete('/:id', function (req, res) {
 /* update*/
 /*put*/
 router.put('/:id', function (req, res) {
-    Object.update({ _id: req.params.id },
-        {
-            gallery:req.body.gallery,
-			confidence:req.body.confidence,
-			age: req.body.age,
-            glasses: req.body.glasses,
-            white: req.body.white,
-            black: req.body.black,
-            asian: req.body.asian,
-            hispanic: req.body.hispanic,
-            other: req.body.other,
-            updateDate: Date.now()
-        }, function (err, object) {
+    Object.update({ _id: req.params.id },{ "$push": { "recognitions": {confidence:req.body.recognitions.confidence,viewed:req.body.recognitions.viewed} }}, 
+    function (err, object) {
             if (err) res.json(err);
             else
                 res.json(req.body);
         });
 });
+
+
 module.exports = router;
 

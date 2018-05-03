@@ -1,6 +1,7 @@
 import DashboardLayout from '../components/Dashboard/Layout/DashboardLayout.vue'
 // GeneralViews
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
+import GoogleMap from '../components/GoogleMap.vue'
 
 // Admin pages
 import Overview from 'src/components/Dashboard/Views/Overview.vue'
@@ -25,8 +26,10 @@ import ManageAreas from 'src/components/Area/areas.vue'
 import addArea from 'src/components/Area/addArea.vue'
 import deleteArea from 'src/components/Area/deleteArea.vue'
 import editArea from 'src/components/Area/editArea.vue'
-
-
+import displayDynamicObjects from 'src/components/Object/displayDynamicObjects.vue'
+import Eiren from 'src/components/Claim/Eiren.vue'
+import Crimes from 'src/components/Crimes/crimes.vue'
+import crimeInfo from 'src/components/Crimes/crimeInfo.vue'
 const routes = [
   {
     path: '/',
@@ -51,12 +54,21 @@ const routes = [
       {
         path: 'overview',
         name: 'Overview',
-        component: Overview
+        component: EirenBrain
+      },
+      {
+        path: 'Eiren',
+        name: 'Eiren',
+        component: Eiren
       },
       {
         path: 'user',
         name: 'User',
         component: UserProfile
+      },{
+        path: 'GoogleMap',
+        name: 'GoogleMap',
+        component: GoogleMap
       },
       {
         path: 'table-list',
@@ -82,7 +94,7 @@ const routes = [
         path: 'EirenBrain',
         name: 'EirenBrain',
         component: EirenBrain
-       
+
       },
       {
         path: 'notifications',
@@ -148,7 +160,23 @@ const routes = [
         path: 'edit-area/:id',
         name: 'edit-area',
         component: editArea
+      },
+      {
+        path: 'displayDynamicObjects',
+        name: 'displayDynamicObjects',
+        component: displayDynamicObjects
+      },
+      {
+        path: 'crimes',
+        name: 'crimes',
+        component: Crimes
+      },
+      {
+        path: 'crime-info/:id',
+        name: 'crime-info',
+        component: crimeInfo
       }
+
     ]
   },
   { path: '*', component: NotFound }

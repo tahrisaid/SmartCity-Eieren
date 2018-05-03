@@ -28,6 +28,7 @@ body {
 header {
   margin: 30px 0;
   text-align: center;
+ 
   
   h2 {
     text-transform: uppercase;
@@ -35,7 +36,7 @@ header {
   }
   
   p {
-    font-size: 1em;
+    font-size: 55em;
   }
   
   a {
@@ -64,7 +65,7 @@ header {
   height: 100%;
   transform: scaleX(-1);
   z-index: -1;
-  background: url(https://source.unsplash.com/Qmox1MkYDnY/900x500) no-repeat;
+  //background: url(https://source.unsplash.com/Qmox1MkYDnY/900x500) no-repeat;
 }
 
 form {

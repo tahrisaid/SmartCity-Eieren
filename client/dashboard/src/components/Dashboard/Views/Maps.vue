@@ -1,21 +1,28 @@
-<template>
-   <vue-google-heatmap :points="fields"
-                       id="map"
-    :center="center"
-    
-    />
-   
+<!--<template>
+  <vue-google-heatmap :points="fields"
+                      id="map"
+                      :center="center"
+
+  />
+
 </template>
 <script>
   import Vue from 'vue'
-  
-  import VueGoogleHeatmap from 'vue-google-heatmap';
-   import axios from 'axios'
 
+  import VueGoogleHeatmap from 'vue-google-heatmap';
+  import axios from 'axios'
+
+
+<<<<<<< HEAD
  
 Vue.use(VueGoogleHeatmap, {
   apiKey: 'AIzaSyDyLpThV6bpKtKwxFEssTctRryoHsVOTR0'
 });
+=======
+  Vue.use(VueGoogleHeatmap, {
+    apiKey: 'AIzaSyDMc-V1coe0x9lYgPvFTa-JCX6smDAVfyU'
+  });
+>>>>>>> 29167b17fb9c185d43c064b65ee7779106913cb1
 
   export default {
     data : function () {
@@ -26,6 +33,7 @@ Vue.use(VueGoogleHeatmap, {
         },
         errors:[],
         fields:[  {lat: 37.786117, lng:-122.440119},
+<<<<<<< HEAD
       {lat: 37.786564, lng:-122.440209},
       {lat: 37.786905, lng:-122.440270},
       {lat: 37.786956, lng:-122.440279},
@@ -70,6 +78,30 @@ Vue.use(VueGoogleHeatmap, {
             
       
     ],
+=======
+          {lat: 37.786564, lng:-122.440209},
+          {lat: 37.786905, lng:-122.440270},
+          {lat: 37.786956, lng:-122.440279},
+          {lat: 37.800224, lng:-122.433520},
+          {lat: 37.800155, lng:-122.434101},
+          {lat: 37.800160, lng:-122.434430},
+          {lat: 37.800378, lng:-122.434527},
+          {lat: 37.800738, lng:-122.434598},
+          {lat: 37.800938, lng:-122.434650},
+          {lat: 37.801024, lng:-122.434889},
+          {lat: 37.800955, lng:-122.435392},
+          {lat: 37.800886, lng:-122.435959},
+          {lat: 37.786117, lng:-122.419087676747},
+          {lat: 37.786117, lng:-122.419087676747},
+          {lat: 37.800886, lng:-122.425891675136}],
+
+        points: [
+
+
+
+
+        ],
+>>>>>>> 29167b17fb9c185d43c064b65ee7779106913cb1
         options: {
           styles: [{
             'featureType': 'water',
@@ -112,6 +144,7 @@ Vue.use(VueGoogleHeatmap, {
         }
       }
     },
+<<<<<<< HEAD
   created: function () {
  
    axios.get('http://localhost:3000/crime/all')
@@ -137,11 +170,41 @@ Vue.use(VueGoogleHeatmap, {
 }).catch(e => { this.errors.push(e) }) 
       },
       
+=======
+    created: function () {
+
+      axios.get('http://localhost:3000/crime/all')
+        .then(response => {
+
+
+
+
+          //  console.log(response.data.length);
+
+          for( var i = 0; i < response.data.length; i++)
+          {
+            this.fields.push({lat:response.data[i].Y,lng:response.data[i].X});
+            console.log(this.fields[i].lat);
+            console.log(this.fields[i].lng);
+
+
+
+            //console.log( this.fields[i].lat);
+          }
+
+
+
+
+
+        }).catch(e => { this.errors.push(e) })
+    },
+>>>>>>> 29167b17fb9c185d43c064b65ee7779106913cb1
     mounted () {
       this.$nextTick(() => {
         this.$refs.mymap.$mapCreated.then(() => {
           var self = this;
           Http.post("v1/getheatmap")
+<<<<<<< HEAD
           .then(response => {
             let latlon = new google.maps.MVCArray();
             response.data.result.forEach(function(coord) {
@@ -152,10 +215,22 @@ Vue.use(VueGoogleHeatmap, {
               map: self.$refs.mymap.$mapObject
             });            
           })
+=======
+            .then(response => {
+              let latlon = new google.maps.MVCArray();
+              response.data.result.forEach(function(coord) {
+                latlon.push(new google.maps.LatLng(this.fields.lat, this.fields.lng));
+              });
+              let x = new google.maps.visualization.HeatmapLayer({
+                data: latlon,
+                map: self.$refs.mymap.$mapObject
+              });
+            })
+>>>>>>> 29167b17fb9c185d43c064b65ee7779106913cb1
         })
-    })
-  }
-  
+      })
+    }
+
   }
 </script>
 <style>
@@ -163,3 +238,4 @@ Vue.use(VueGoogleHeatmap, {
     min-height: calc(100vh - 123px);
   }
 </style>
+

@@ -7,6 +7,10 @@
         <i class="nc-icon nc-chart-pie-35"></i>
         <p>Dashboard</p>
       </sidebar-link>
+      <sidebar-link to="/admin/Eiren">
+        <i class="nc-icon nc-satisfied"></i>
+        <p>Eiren's bot</p>
+      </sidebar-link>
            <sidebar-link to="/admin/EirenBrain">
         <i class="nc-icon nc-chart-pie-35"></i>
         <p>Eiren's Brain</p>
@@ -23,13 +27,17 @@
         <i class="nc-icon nc-notes"></i>
         <p>Objects</p>
       </sidebar-link>
-      <sidebar-link to="/admin/user">
+      <!--<sidebar-link to="/admin/user">
         <i class="nc-icon nc-circle-09"></i>
         <p>User Profile</p>
-      </sidebar-link>
+      </sidebar-link>-->
       <sidebar-link to="/admin/manage-areas">
         <i class="nc-icon nc-globe-2"></i>
         <p>Areas</p>
+      </sidebar-link>
+      <sidebar-link to="/admin/crimes">
+        <i class="nc-icon nc-tv-2"></i>
+        <p>Crimes</p>
       </sidebar-link>
     </side-bar>
     <div class="main-panel">

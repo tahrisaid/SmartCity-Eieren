@@ -24,6 +24,16 @@
                     required>
           </fg-input>
         </div>
+        <div class="col-md-6">
+        <fg-input type="hidden"  id="long"  v-model.trim="object.long"/>
+        <fg-input type="text" v-bind:value="center.lng" id="longg" label="longittude"/>
+        </div>
+        <div class="col-md-6">
+          <fg-input type="hidden"  id="lat"  v-model.trim="object.lat"/>
+          <fg-input type="text" v-bind:value="center.lng" id="latt" label="lattitude"/>
+        </div>
+
+
       </div>
 
       <div class="row">
@@ -39,43 +49,66 @@
               </textarea>
           </div>
         </div>
+
       </div>
+
       <div class="text-center">
         <button class="btn btn-info btn-fill float-right" type="submit" variant="primary" @click.stop="notifyVue('bottom', 'right')">
           Add Claim
         </button>
       </div>
-       <gmap-map
-         :center="center"
-         :zoom="7"
-         style="width: 500px; height: 300px"
-       >
-         <gmap-marker
-           :key="index"
-           v-for="(m, index) in markers"
-           :position="m.position"
-           :clickable="true"
-           :draggable="true"
-           @click="center=m.position"
-         ></gmap-marker>
-       </gmap-map>
+
       <div class="clearfix"></div>
     </b-form>
+    <div>
+      <div>
+        <h2>Search and add a pin</h2>
+        <label>
+          <gmap-autocomplete
+            @place_changed="setPlace">
+          </gmap-autocomplete>
+
+          <button @click="addMarker">Add</button>
+        </label>
+        <br/>
+
+      </div>
+      <br>
+      <gmap-map
+        :center="center"
+        :zoom="12"
+        style="width:100%;  height: 400px;"
+      >
+        <gmap-marker
+          :key="index"
+          v-for="(m, index) in markers"
+          :position="m.position"
+          @click="center=m.position"
+        ></gmap-marker>
+      </gmap-map>
+    </div>
   </card>
 </template>
 <script>
   import Card from 'src/components/UIComponents/Cards/Card.vue'
-  import * as VueGoogleMaps from 'vue2-google-maps';
-  import Vue from 'vue';
-  import axios from 'axios'
 
+  import axios from 'axios'
+  import * as VueGoogleMaps from 'vue2-google-maps';
+  import Vue from 'vue'
   Vue.use(VueGoogleMaps, {
     load: {
+<<<<<<< HEAD
       key: '',
       v: 'OPTIONAL VERSION NUMBER',
       // libraries: 'places', //// If you need to use place input
     }
+=======
+      key: 'AIzaSyDyLpThV6bpKtKwxFEssTctRryoHsVOTR0',
+      libraries: 'places', // necessary for places input
+    },
+>>>>>>> 29167b17fb9c185d43c064b65ee7779106913cb1
   });
+
 
   export default {
     name: 'CreteObject',
@@ -89,17 +122,22 @@
         notifications: {
           topCenter: false
         },
-        center: {lat: 10.0, lng: 10.0},
-        markers: [{
-          position: {lat: 10.0, lng: 10.0}
-        }, {
-          position: {lat: 11.0, lng: 11.0}
-        }]
+        center: { lat: 45.508, lng: -73.587 },
+        markers: [],
+        places: [],
+        currentPlace: null,
+
       }
+    },
+    mounted() {
+      this.geolocate();
     },
     methods: {
       onSubmit (evt) {
         evt.preventDefault()
+        this.object.long=this.center.lng;
+        this.object.lat=this.center.lat;
+
         axios.post(`http://localhost:3000/claim`, this.object)
         .then(response => {
           this.$router.push({
@@ -111,20 +149,31 @@
           this.errors.push(e)
         })
       },
-      notifyVue (verticalAlign, horizontalAlign) {
-        const notification = {
-          template: `<span><b>Add Notification</b></br>This claim have been sended succesfully.</span>`
+      setPlace(place) {
+        this.currentPlace = place;
+      },
+      addMarker() {
+        if (this.currentPlace) {
+          const marker = {
+            lat: this.currentPlace.geometry.location.lat(),
+            lng: this.currentPlace.geometry.location.lng(),
+          };
+          this.markers.push({ position: marker });
+          this.places.push(this.currentPlace);
+          this.center = marker;
+          this.currentPlace = null;
         }
-        const color = Math.floor((Math.random() * 4) + 1)
-        this.$notifications.notify(
-          {
-            component: notification,
-            icon: 'nc-icon nc-app',
-            horizontalAlign: horizontalAlign,
-            verticalAlign: verticalAlign,
-            type: this.type[color]
-          })
-      }
+      },
+      geolocate() {
+        navigator.geolocation.getCurrentPosition((position) => {
+          this.center = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            //  latt: position.coords.latitude,
+            //  langg: position.coords.longitude,
+          };
+        });
+      },
     }
   }
 </script>

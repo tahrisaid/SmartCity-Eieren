@@ -5,12 +5,12 @@
       <a href="#">
         <img class="avatar border-gray" src="static/img/faces/face-3.jpg" alt="..."/>
 
-        <h4 class="title">Mike Andrew<br />
-          <small>michael24</small>
+        <h4 class="title">Add an object<br />
+         
         </h4>
       </a>
     </div>
-    <p class="description text-center"> "Lamborghini Mercy <br>
+    <p class="description text-center"> You can use this interface to add objects that you, think, may be a danger for our citizens. <br>
       Your chick she so thirsty <br>
       I'm in that two seat Lambo"
     </p>

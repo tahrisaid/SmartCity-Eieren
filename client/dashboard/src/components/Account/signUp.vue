@@ -46,6 +46,15 @@
         </div>
 
         <div class="form-group">
+         <select  v-model.trim="account.role" required :state="state"
+                    placeholder="Role">
+                     <option value="" selected disabled>Select the role</option>
+                     <option value="Admin">Admin</option>
+                     <option value="Citizen">Citizen</option>
+                  </select>
+        </div>
+
+        <div class="form-group">
           <button :class="{active: disable_btn}" type="submit"  @click.stop>
           Sign Up
         </button>
@@ -76,7 +85,9 @@ $grey: #8F949B;
 body {
   height: 100%;
   font-family: 'Roboto', sans-serif;
-  background:url("../../../static/img/smartCity.jpg")no-repeat;
+  color:white;
+  background:url("https://www.walldevil.com/wallpapers/a85/cityscapes-artwork-cities-art-fantasy-wallpapers-futuristic-wallpaper.jpg") no-repeat;
+
 }
 
 .container {
@@ -220,21 +231,40 @@ form .form-group:last-child {
     data() {
       return {
         account: {},
+        type: ['', 'info', 'success', 'warning', 'danger'],
+         notifications: {
+           topCenter: false
+         }
       }
     },
      methods: {
       onSubmit (evt) {
         evt.preventDefault()
+        var n = this.account.password.localeCompare(this.account.passwordConf);
+
+        if ((this.account.accountname.length) < 8)
+        {
+          alert("Username must contain 8 caracters at least");
+        }
+        else if (n != 0)
+          {
+            alert("Passwords do not match! Please try again.");
+          }
+        else 
+          {
         axios.post(`http://localhost:3000/account`, this.account)
         .then(response => {
+           
           this.$router.push({
             name: 'signIn',
             params: { id: response.data._id }
-          })
+          });
+          
         })
         .catch(e => {
           this.errors.push(e)
         })
+      }
       }
       }
   }

@@ -54,7 +54,9 @@
    body {
    height: 100%;
    font-family: 'Roboto', sans-serif;
-     background:url("../../../static/img/smartCity.jpg")no-repeat;
+    
+    color:white;
+     background:url("https://www.walldevil.com/wallpapers/a85/cityscapes-artwork-cities-art-fantasy-wallpapers-futuristic-wallpaper.jpg") no-repeat;
 
    }
    .container {
@@ -173,6 +175,7 @@
    opacity: 0;
    transform: translateX(-40px);
    }
+   
 </style>
 <script>
    import axios from 'axios'
@@ -194,7 +197,7 @@
           })
           })
           .catch(e => {
-
+              alert("Invalid credentials! Pelase try again.")
           })
         }
         }

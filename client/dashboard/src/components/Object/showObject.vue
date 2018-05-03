@@ -19,7 +19,7 @@
           Description: {{object.description}}<br>
           Degree: {{object.degree}}<br>
           Detected or not: {{object.thread}}<br><br>
-          <img src="http://127.0.0.1:8080/images/said.jpg" width="200" height="200">
+          <img :src="(object.pathOfImg)" width="200" height="200">
         </template>
         <hr class="my-4">
         <b-btn variant="success" @click.stop="editObject(object._id)">Edit</b-btn>

@@ -51,7 +51,11 @@
       </div>
       <div class="clearfix"></div>
     </b-form>
+<<<<<<< HEAD
    
+=======
+
+>>>>>>> 29167b17fb9c185d43c064b65ee7779106913cb1
   </card>
 </template>
 <script>
@@ -59,6 +63,7 @@
 
   import axios from 'axios'
   import Vue from 'vue'
+<<<<<<< HEAD
   import * as VueGoogleMaps from 'vue2-google-maps'
   Vue.use(VueGoogleMaps, {
   load: {
@@ -69,10 +74,13 @@
     // (as you require)
   }
 })
+=======
+
+>>>>>>> 29167b17fb9c185d43c064b65ee7779106913cb1
   export default {
     name: 'CreateArea',
     components: {
-      Card, VueGoogleMaps
+      Card
     },
     data () {
       return {
