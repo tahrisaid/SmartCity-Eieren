@@ -20,3 +20,4 @@ ALL APIs are under http://localhost:3000/back/api
 This folder contains the source code of the object detection from the Google's TensorFlow object detection API
 
 PS : You need to install python 3.6.5 or above, TensorFlow, Numpy, SocketIO_client and Open CV.
+"# SmartCity-Eieren" 
